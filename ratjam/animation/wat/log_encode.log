@@ -1,0 +1,222 @@
+ffmpeg version 4.2 Copyright (c) 2000-2019 the FFmpeg developers
+  built with gcc 9.1.1 (GCC) 20190807
+  configuration: --enable-gpl --enable-version3 --enable-sdl2 --enable-fontconfig --enable-gnutls --enable-iconv --enable-libass --enable-libdav1d --enable-libbluray --enable-libfreetype --enable-libmp3lame --enable-libopencore-amrnb --enable-libopencore-amrwb --enable-libopenjpeg --enable-libopus --enable-libshine --enable-libsnappy --enable-libsoxr --enable-libtheora --enable-libtwolame --enable-libvpx --enable-libwavpack --enable-libwebp --enable-libx264 --enable-libx265 --enable-libxml2 --enable-libzimg --enable-lzma --enable-zlib --enable-gmp --enable-libvidstab --enable-libvorbis --enable-libvo-amrwbenc --enable-libmysofa --enable-libspeex --enable-libxvid --enable-libaom --enable-libmfx --enable-amf --enable-ffnvcodec --enable-cuvid --enable-d3d11va --enable-nvenc --enable-nvdec --enable-dxva2 --enable-avisynth --enable-libopenmpt
+  libavutil      56. 31.100 / 56. 31.100
+  libavcodec     58. 54.100 / 58. 54.100
+  libavformat    58. 29.100 / 58. 29.100
+  libavdevice    58.  8.100 / 58.  8.100
+  libavfilter     7. 57.100 /  7. 57.100
+  libswscale      5.  5.100 /  5.  5.100
+  libswresample   3.  5.100 /  3.  5.100
+  libpostproc    55.  5.100 / 55.  5.100
+Splitting the commandline.
+Reading option '-v' ... matched as option 'v' (set logging level) with argument 'debug'.
+Reading option '-nostdin' ... matched as option 'stdin' (enable or disable interaction on standard input) with argument 0.
+Reading option '-progress' ... matched as option 'progress' (write program-readable progress information) with argument 'C:/Users/gusta/AppData/Local/Temp/KritaFFmpegProgress.FR1412'.
+Reading option '-r' ... matched as option 'r' (set frame rate (Hz value, fraction or abbreviation)) with argument '24'.
+Reading option '-start_number' ... matched as AVOption 'start_number' with argument '0'.
+Reading option '-i' ... matched as input url with argument 'C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/ratframe%04d.png'.
+Reading option '-y' ... matched as option 'y' (overwrite output files) with argument '1'.
+Reading option 'C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/0030~000.mp4' ... matched as output url.
+Finished splitting the commandline.
+Parsing a group of options: global .
+Applying option v (set logging level) with argument debug.
+Applying option nostdin (enable or disable interaction on standard input) with argument 0.
+Applying option progress (write program-readable progress information) with argument C:/Users/gusta/AppData/Local/Temp/KritaFFmpegProgress.FR1412.
+[file @ 0000015cd6f5ad00] Setting default whitelist 'file,crypto'
+Applying option y (overwrite output files) with argument 1.
+Successfully parsed a group of options.
+Parsing a group of options: input url C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/ratframe%04d.png.
+Applying option r (set frame rate (Hz value, fraction or abbreviation)) with argument 24.
+Successfully parsed a group of options.
+Opening an input file: C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/ratframe%04d.png.
+[image2 @ 0000015cd6f9b040] Opening 'C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/ratframe0000.png' for reading
+[file @ 0000015cd6f9e7c0] Setting default whitelist 'file,crypto'
+[AVIOContext @ 0000015cd6fa6980] Statistics: 5684 bytes read, 0 seeks
+[image2 @ 0000015cd6f9b040] Opening 'C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/ratframe0001.png' for reading
+[file @ 0000015cd6fa8300] Setting default whitelist 'file,crypto'
+[AVIOContext @ 0000015cd6fa8480] Statistics: 5737 bytes read, 0 seeks
+[image2 @ 0000015cd6f9b040] Opening 'C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/ratframe0002.png' for reading
+[file @ 0000015cd6fa69c0] Setting default whitelist 'file,crypto'
+[AVIOContext @ 0000015cd6fa8380] Statistics: 5329 bytes read, 0 seeks
+[image2 @ 0000015cd6f9b040] Opening 'C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/ratframe0003.png' for reading
+[file @ 0000015cd6fa8300] Setting default whitelist 'file,crypto'
+[AVIOContext @ 0000015cd73fdc40] Statistics: 6133 bytes read, 0 seeks
+[image2 @ 0000015cd6f9b040] Opening 'C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/ratframe0004.png' for reading
+[file @ 0000015cd73fdc40] Setting default whitelist 'file,crypto'
+[AVIOContext @ 0000015cd73fde00] Statistics: 5935 bytes read, 0 seeks
+[image2 @ 0000015cd6f9b040] Opening 'C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/ratframe0005.png' for reading
+[file @ 0000015cd73fde00] Setting default whitelist 'file,crypto'
+[AVIOContext @ 0000015cd6fa6000] Statistics: 6682 bytes read, 0 seeks
+[image2 @ 0000015cd6f9b040] Opening 'C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/ratframe0006.png' for reading
+[file @ 0000015cd6fa6000] Setting default whitelist 'file,crypto'
+[AVIOContext @ 0000015cd6fa61c0] Statistics: 6367 bytes read, 0 seeks
+[image2 @ 0000015cd6f9b040] Opening 'C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/ratframe0007.png' for reading
+[file @ 0000015cd6fa61c0] Setting default whitelist 'file,crypto'
+[AVIOContext @ 0000015cd6fa62c0] Statistics: 7417 bytes read, 0 seeks
+[image2 @ 0000015cd6f9b040] Opening 'C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/ratframe0008.png' for reading
+[file @ 0000015cd6fa6280] Setting default whitelist 'file,crypto'
+[AVIOContext @ 0000015cd6fa6380] Statistics: 7677 bytes read, 0 seeks
+[image2 @ 0000015cd6f9b040] Opening 'C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/ratframe0009.png' for reading
+[file @ 0000015cd6fa6340] Setting default whitelist 'file,crypto'
+[AVIOContext @ 0000015cd6fa6440] Statistics: 8086 bytes read, 0 seeks
+[image2 @ 0000015cd6f9b040] Opening 'C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/ratframe0010.png' for reading
+[file @ 0000015cd6fa66c0] Setting default whitelist 'file,crypto'
+[AVIOContext @ 0000015cd6fa6340] Statistics: 7990 bytes read, 0 seeks
+[image2 @ 0000015cd6f9b040] Opening 'C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/ratframe0011.png' for reading
+[file @ 0000015cd6fa66c0] Setting default whitelist 'file,crypto'
+[AVIOContext @ 0000015cd6fa6340] Statistics: 7709 bytes read, 0 seeks
+[image2 @ 0000015cd6f9b040] Opening 'C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/ratframe0012.png' for reading
+[file @ 0000015cd6fa66c0] Setting default whitelist 'file,crypto'
+[AVIOContext @ 0000015cd6fa6340] Statistics: 7397 bytes read, 0 seeks
+[image2 @ 0000015cd6f9b040] Opening 'C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/ratframe0013.png' for reading
+[file @ 0000015cd6fa66c0] Setting default whitelist 'file,crypto'
+[AVIOContext @ 0000015cd6fa6340] Statistics: 7891 bytes read, 0 seeks
+[image2 @ 0000015cd6f9b040] Opening 'C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/ratframe0014.png' for reading
+[file @ 0000015cd6fa66c0] Setting default whitelist 'file,crypto'
+[AVIOContext @ 0000015cd6fa6340] Statistics: 7682 bytes read, 0 seeks
+[image2 @ 0000015cd6f9b040] Opening 'C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/ratframe0015.png' for reading
+[file @ 0000015cd6fa66c0] Setting default whitelist 'file,crypto'
+[AVIOContext @ 0000015cd6fa6340] Statistics: 7358 bytes read, 0 seeks
+[image2 @ 0000015cd6f9b040] Opening 'C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/ratframe0016.png' for reading
+[file @ 0000015cd6fa66c0] Setting default whitelist 'file,crypto'
+[AVIOContext @ 0000015cd6fa6340] Statistics: 7932 bytes read, 0 seeks
+[image2 @ 0000015cd6f9b040] Opening 'C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/ratframe0017.png' for reading
+[file @ 0000015cd6fa66c0] Setting default whitelist 'file,crypto'
+[AVIOContext @ 0000015cd6fa6340] Statistics: 7989 bytes read, 0 seeks
+[image2 @ 0000015cd6f9b040] Opening 'C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/ratframe0018.png' for reading
+[file @ 0000015cd6fa66c0] Setting default whitelist 'file,crypto'
+[AVIOContext @ 0000015cd6fa6340] Statistics: 8385 bytes read, 0 seeks
+[image2 @ 0000015cd6f9b040] Opening 'C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/ratframe0019.png' for reading
+[file @ 0000015cd6fa66c0] Setting default whitelist 'file,crypto'
+[AVIOContext @ 0000015cd6fa6340] Statistics: 8007 bytes read, 0 seeks
+[image2 @ 0000015cd6f9b040] Opening 'C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/ratframe0020.png' for reading
+[file @ 0000015cd6fa66c0] Setting default whitelist 'file,crypto'
+[AVIOContext @ 0000015cd6fa6340] Statistics: 7296 bytes read, 0 seeks
+[image2 @ 0000015cd6f9b040] Opening 'C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/ratframe0021.png' for reading
+[file @ 0000015cd6fa66c0] Setting default whitelist 'file,crypto'
+[AVIOContext @ 0000015cd6fa6340] Statistics: 8068 bytes read, 0 seeks
+[image2 @ 0000015cd6f9b040] Opening 'C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/ratframe0022.png' for reading
+[file @ 0000015cd6fa66c0] Setting default whitelist 'file,crypto'
+[AVIOContext @ 0000015cd6fa6340] Statistics: 8403 bytes read, 0 seeks
+[image2 @ 0000015cd6f9b040] Opening 'C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/ratframe0023.png' for reading
+[file @ 0000015cd6fa66c0] Setting default whitelist 'file,crypto'
+[AVIOContext @ 0000015cd6fa6340] Statistics: 8145 bytes read, 0 seeks
+[image2 @ 0000015cd6f9b040] Opening 'C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/ratframe0024.png' for reading
+[file @ 0000015cd6fa66c0] Setting default whitelist 'file,crypto'
+[AVIOContext @ 0000015cd6fa6340] Statistics: 7015 bytes read, 0 seeks
+[image2 @ 0000015cd6f9b040] Opening 'C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/ratframe0025.png' for reading
+[file @ 0000015cd6fa66c0] Setting default whitelist 'file,crypto'
+[AVIOContext @ 0000015cd6fa6340] Statistics: 5820 bytes read, 0 seeks
+[image2 @ 0000015cd6f9b040] Opening 'C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/ratframe0026.png' for reading
+[file @ 0000015cd6fa66c0] Setting default whitelist 'file,crypto'
+[AVIOContext @ 0000015cd6fa6340] Statistics: 5953 bytes read, 0 seeks
+[image2 @ 0000015cd6f9b040] Opening 'C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/ratframe0027.png' for reading
+[file @ 0000015cd6fa66c0] Setting default whitelist 'file,crypto'
+[AVIOContext @ 0000015cd6fa6340] Statistics: 5806 bytes read, 0 seeks
+[image2 @ 0000015cd6f9b040] Opening 'C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/ratframe0028.png' for reading
+[file @ 0000015cd6fa66c0] Setting default whitelist 'file,crypto'
+[AVIOContext @ 0000015cd6fa6340] Statistics: 5660 bytes read, 0 seeks
+Input #0, image2, from 'C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/ratframe%04d.png':
+  Duration: 00:00:01.16, start: 0.000000, bitrate: N/A
+    Stream #0:0, 29, 1/25: Video: png, 1 reference frame, rgba(pc), 338x408 [SAR 2835:2835 DAR 169:204], 0/1, 25 fps, 25 tbr, 25 tbn, 25 tbc
+Successfully opened the file.
+Parsing a group of options: output url C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/0030~000.mp4.
+Successfully parsed a group of options.
+Opening an output file: C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/0030~000.mp4.
+[file @ 0000015cd6fa0340] Setting default whitelist 'file,crypto'
+Successfully opened the file.
+detected 4 logical cores
+Stream mapping:
+  Stream #0:0 -> #0:0 (png (native) -> h264 (libx264))
+cur_dts is invalid st:0 (0) [init:0 i_done:0 finish:0] (this is harmless if it occurs once at the start per stream)
+    Last message repeated 4 times
+[graph 0 input from stream 0:0 @ 0000015cd7517c00] Setting 'video_size' to value '338x408'
+[graph 0 input from stream 0:0 @ 0000015cd7517c00] Setting 'pix_fmt' to value '26'
+[graph 0 input from stream 0:0 @ 0000015cd7517c00] Setting 'time_base' to value '1/24'
+[graph 0 input from stream 0:0 @ 0000015cd7517c00] Setting 'pixel_aspect' to value '2835/2835'
+[graph 0 input from stream 0:0 @ 0000015cd7517c00] Setting 'sws_param' to value 'flags=2'
+[graph 0 input from stream 0:0 @ 0000015cd7517c00] Setting 'frame_rate' to value '24/1'
+[graph 0 input from stream 0:0 @ 0000015cd7517c00] w:338 h:408 pixfmt:rgba tb:1/24 fr:24/1 sar:2835/2835 sws_param:flags=2
+[format @ 0000015cd7717cc0] Setting 'pix_fmts' to value 'yuv420p|yuvj420p|yuv422p|yuvj422p|yuv444p|yuvj444p|nv12|nv16|nv21|yuv420p10le|yuv422p10le|yuv444p10le|nv20le|gray|gray10le'
+[auto_scaler_0 @ 0000015cd7717bc0] Setting 'flags' to value 'bicubic'
+[auto_scaler_0 @ 0000015cd7717bc0] w:iw h:ih flags:'bicubic' interl:0
+[format @ 0000015cd7717cc0] auto-inserting filter 'auto_scaler_0' between the filter 'Parsed_null_0' and the filter 'format'
+[AVFilterGraph @ 0000015cd6fa9e00] query_formats: 4 queried, 2 merged, 1 already done, 0 delayed
+[auto_scaler_0 @ 0000015cd7717bc0] picking yuv444p out of 13 ref:rgba alpha:1
+[auto_scaler_0 @ 0000015cd7717bc0] w:338 h:408 fmt:rgba sar:2835/2835 -> w:338 h:408 fmt:yuv444p sar:1/1 flags:0x4
+[libx264 @ 0000015cd6f9e340] using mv_range_thread = 24
+[libx264 @ 0000015cd6f9e340] using SAR=1/1
+[libx264 @ 0000015cd6f9e340] using cpu capabilities: MMX2 SSE2Fast SSSE3 SSE4.2 AVX FMA3 BMI2 AVX2
+[libx264 @ 0000015cd6f9e340] profile High 4:4:4 Predictive, level 2.1, 4:4:4, 8-bit
+[libx264 @ 0000015cd6f9e340] 264 - core 158 r2984 3759fcb - H.264/MPEG-4 AVC codec - Copyleft 2003-2019 - http://www.videolan.org/x264.html - options: cabac=1 ref=3 deblock=1:0:0 analyse=0x3:0x113 me=hex subme=7 psy=1 psy_rd=1.00:0.00 mixed_ref=1 me_range=16 chroma_me=1 trellis=1 8x8dct=1 cqm=0 deadzone=21,11 fast_pskip=1 chroma_qp_offset=4 threads=6 lookahead_threads=1 sliced_threads=0 nr=0 decimate=1 interlaced=0 bluray_compat=0 constrained_intra=0 bframes=3 b_pyramid=2 b_adapt=1 b_bias=0 direct=1 weightb=1 open_gop=0 weightp=2 keyint=250 keyint_min=24 scenecut=40 intra_refresh=0 rc_lookahead=40 rc=crf mbtree=1 crf=23.0 qcomp=0.60 qpmin=0 qpmax=69 qpstep=4 ip_ratio=1.40 aq=1:1.00
+Output #0, mp4, to 'C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/0030~000.mp4':
+  Metadata:
+    encoder         : Lavf58.29.100
+    Stream #0:0, 0, 1/12288: Video: h264 (libx264), 1 reference frame (avc1 / 0x31637661), yuv444p, 338x408 [SAR 1:1 DAR 169:204], 0/1, q=-1--1, 24 fps, 12288 tbn, 24 tbc
+    Metadata:
+      encoder         : Lavc58.54.100 libx264
+    Side data:
+      cpb: bitrate max/min/avg: 0/0/0 buffer size: 0 vbv_delay: -1
+Clipping frame in rate conversion by 0.000008
+cur_dts is invalid st:0 (0) [init:1 i_done:0 finish:0] (this is harmless if it occurs once at the start per stream)
+    Last message repeated 29 times
+[out_0_0 @ 0000015cd7517ec0] EOF on sink link out_0_0:default.
+No more output streams to write to, finishing.
+[libx264 @ 0000015cd6f9e340] frame=   0 QP=15.77 NAL=3 Slice:I Poc:0   I:572  P:0    SKIP:0    size=1610 bytes
+[libx264 @ 0000015cd6f9e340] frame=   1 QP=21.70 NAL=2 Slice:P Poc:8   I:93   P:4    SKIP:475  size=1869 bytes
+[libx264 @ 0000015cd6f9e340] frame=   2 QP=25.08 NAL=2 Slice:B Poc:4   I:55   P:39   SKIP:475  size=1718 bytes
+[libx264 @ 0000015cd6f9e340] frame=   3 QP=30.84 NAL=0 Slice:B Poc:2   I:42   P:45   SKIP:473  size=1713 bytes
+[libx264 @ 0000015cd6f9e340] frame=   4 QP=31.15 NAL=0 Slice:B Poc:6   I:47   P:43   SKIP:472  size=1986 bytes
+[libx264 @ 0000015cd6f9e340] frame=   5 QP=21.17 NAL=2 Slice:P Poc:16  I:78   P:32   SKIP:462  size=2012 bytes
+[libx264 @ 0000015cd6f9e340] frame=   6 QP=27.23 NAL=2 Slice:B Poc:12  I:41   P:51   SKIP:475  size=1824 bytes
+[libx264 @ 0000015cd6f9e340] frame=   7 QP=27.74 NAL=0 Slice:B Poc:10  I:51   P:46   SKIP:470  size=1854 bytes
+[libx264 @ 0000015cd6f9e340] frame=   8 QP=30.05 NAL=0 Slice:B Poc:14  I:53   P:44   SKIP:468  size=1689 bytes
+[libx264 @ 0000015cd6f9e340] frame=   9 QP=18.35 NAL=2 Slice:P Poc:20  I:82   P:38   SKIP:452  size=2091 bytes
+[libx264 @ 0000015cd6f9e340] frame=  10 QP=28.76 NAL=0 Slice:B Poc:18  I:50   P:59   SKIP:451  size=2126 bytes
+[libx264 @ 0000015cd6f9e340] frame=  11 QP=26.05 NAL=2 Slice:P Poc:28  I:80   P:29   SKIP:463  size=1791 bytes
+[libx264 @ 0000015cd6f9e340] frame=  12 QP=27.25 NAL=2 Slice:B Poc:24  I:47   P:50   SKIP:459  size=1924 bytes
+[libx264 @ 0000015cd6f9e340] frame=  13 QP=27.58 NAL=0 Slice:B Poc:22  I:40   P:58   SKIP:462  size=1336 bytes
+[libx264 @ 0000015cd6f9e340] frame=  14 QP=28.93 NAL=0 Slice:B Poc:26  I:49   P:50   SKIP:465  size=1848 bytes
+[libx264 @ 0000015cd6f9e340] frame=  15 QP=19.30 NAL=2 Slice:P Poc:36  I:73   P:38   SKIP:461  size=2052 bytes
+[libx264 @ 0000015cd6f9e340] frame=  16 QP=27.20 NAL=2 Slice:B Poc:32  I:38   P:64   SKIP:454  size=1765 bytes
+[libx264 @ 0000015cd6f9e340] frame=  17 QP=26.12 NAL=0 Slice:B Poc:30  I:42   P:45   SKIP:471  size=1753 bytes
+[libx264 @ 0000015cd6f9e340] frame=  18 QP=29.29 NAL=0 Slice:B Poc:34  I:38   P:55   SKIP:455  size=2049 bytes
+[libx264 @ 0000015cd6f9e340] frame=  19 QP=20.69 NAL=2 Slice:P Poc:44  I:71   P:50   SKIP:451  size=2277 bytes
+[libx264 @ 0000015cd6f9e340] frame=  20 QP=25.73 NAL=2 Slice:B Poc:40  I:60   P:63   SKIP:438  size=2068 bytes
+[libx264 @ 0000015cd6f9e340] frame=  21 QP=27.16 NAL=0 Slice:B Poc:38  I:50   P:54   SKIP:454  size=1983 bytes
+[libx264 @ 0000015cd6f9e340] frame=  22 QP=28.14 NAL=0 Slice:B Poc:42  I:58   P:67   SKIP:439  size=2061 bytes
+[libx264 @ 0000015cd6f9e340] frame=  23 QP=15.97 NAL=2 Slice:P Poc:46  I:98   P:34   SKIP:440  size=1953 bytes
+[libx264 @ 0000015cd6f9e340] frame=  24 QP=18.72 NAL=2 Slice:P Poc:48  I:129  P:19   SKIP:424  size=2418 bytes
+[libx264 @ 0000015cd6f9e340] frame=  25 QP=19.55 NAL=2 Slice:P Poc:54  I:115  P:31   SKIP:426  size=1740 bytes
+[libx264 @ 0000015cd6f9e340] frame=  26 QP=28.70 NAL=2 Slice:B Poc:50  I:30   P:80   SKIP:449  size=1715 bytes
+[libx264 @ 0000015cd6f9e340] frame=  27 QP=28.91 NAL=0 Slice:B Poc:52  I:30   P:73   SKIP:457  size=1736 bytes
+[libx264 @ 0000015cd6f9e340] frame=  28 QP=22.37 NAL=2 Slice:P Poc:56  I:79   P:54   SKIP:439  size=1510 bytes
+frame=   29 fps=0.0 q=-1.0 Lsize=      55kB time=00:00:01.08 bitrate= 416.0kbits/s speed=12.6x    
+[AVIOContext @ 0000015cd6f9aec0] Statistics: 0 seeks, 1 writeouts
+video:54kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: 2.148335%
+Input file #0 (C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/ratframe%04d.png):
+  Input stream #0:0 (video): 29 packets read (205553 bytes); 29 frames decoded; 
+  Total: 29 packets (205553 bytes) demuxed
+Output file #0 (C:/Users/gusta/Desktop/gamedev/_nyu/_thesis/ratrat/animation/wat/0030~000.mp4):
+  Output stream #0:0 (video): 29 frames encoded; 29 packets muxed (55159 bytes); 
+  Total: 29 packets (55159 bytes) muxed
+29 frames successfully decoded, 0 decoding errors
+[AVIOContext @ 0000015cd6fa0440] Statistics: 2 seeks, 4 writeouts
+[libx264 @ 0000015cd6f9e340] frame I:1     Avg QP:15.77  size:  1610
+[libx264 @ 0000015cd6f9e340] frame P:10    Avg QP:20.39  size:  1971
+[libx264 @ 0000015cd6f9e340] frame B:18    Avg QP:28.10  size:  1842
+[libx264 @ 0000015cd6f9e340] consecutive B-frames: 13.8%  6.9% 10.3% 69.0%
+[libx264 @ 0000015cd6f9e340] mb I  I16..4:  1.6% 87.4% 11.0%
+[libx264 @ 0000015cd6f9e340] mb P  I16..4:  1.6%  4.9%  9.1%  P16..4:  2.4%  1.9%  1.5%  0.0%  0.0%    skip:78.5%
+[libx264 @ 0000015cd6f9e340] mb B  I16..4:  0.2%  1.2%  6.5%  B16..8:  6.3%  2.9%  1.7%  direct: 0.6%  skip:80.5%  L0:52.4% L1:45.5% BI: 2.0%
+[libx264 @ 0000015cd6f9e340] 8x8 transform intra:39.6% inter:7.3%
+[libx264 @ 0000015cd6f9e340] coded y,u,v intra: 36.0% 3.9% 8.9% inter: 2.6% 0.2% 0.2%
+[libx264 @ 0000015cd6f9e340] i16 v,h,dc,p: 56% 32% 12%  0%
+[libx264 @ 0000015cd6f9e340] i8 v,h,dc,ddl,ddr,vr,hd,vl,hu: 34%  8% 55%  2%  0%  0%  0%  0%  1%
+[libx264 @ 0000015cd6f9e340] i4 v,h,dc,ddl,ddr,vr,hd,vl,hu: 26% 20% 32%  6%  2%  3%  2%  5%  5%
+[libx264 @ 0000015cd6f9e340] Weighted P-Frames: Y:0.0% UV:0.0%
+[libx264 @ 0000015cd6f9e340] ref P L0: 49.5%  4.4% 27.0% 19.1%
+[libx264 @ 0000015cd6f9e340] ref B L0: 68.5% 24.9%  6.6%
+[libx264 @ 0000015cd6f9e340] ref B L1: 89.9% 10.1%
+[libx264 @ 0000015cd6f9e340] kb/s:360.64
