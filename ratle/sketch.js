@@ -29,6 +29,7 @@ function preload() {
 function setup() {
   WIDTH = Math.min(windowWidth * 0.9, windowHeight * ASPECT * 0.7)
   HEIGHT = WIDTH / ASPECT
+  // ASPECT = WIDTH / HEIGHT
   const canvas = createCanvas(WIDTH, HEIGHT);
   canvas.parent('canvas-container')
   canvas.id = 'canvas'
