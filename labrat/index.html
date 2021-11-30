@@ -1,32 +1,36 @@
 <!DOCTYPE html>
 
 <html>
-  <head>
-    <link rel="stylesheet" href="./main.css" >
-  </head>
+
+<head>
+  <link rel="stylesheet" href="./main.css">
+</head>
+
+<body>
+
 
   <p>001</p>
 
   <!--rat tail go bye-->
 
-  <div class = "rat" >
-  
-  <img src="../labrat/images/labrat1_wo_body.png" class = "ratTail" draggable="true" ondragend="destroyTail(event)" >
+  <div class="rat">
 
-  <img src="../labrat/images/labrat1_wo_tail.png"  >
+    <img id="rat-tail" src="../labrat/images/labrat1_wo_body.png" class="ratTail" draggable="true" ondragend="destroyTail(event)">
+
+    <img id="rat-bod" src="../labrat/images/labrat1_wo_tail.png">
 
   </div>
 
-  <p>a rat without it's tail is just a hamster</p>
+  <p id="tail-tale" style="visibility: hidden;">a rat without it's tail is just a hamster</p>
 
   HAMSTER: hey i'm not a freak. we have tails.
   <p>look.</p>
 
   EXHIBIT A:
-  <img src="../labrat/images/hamster-butt.jpg" >
+  <img src="../labrat/images/hamster-butt.jpg">
 
   EXHIBIT B:
-  <img src="../labrat/images/40-5e25b34aa302c__700.jpg" >
+  <img src="../labrat/images/40-5e25b34aa302c__700.jpg">
 
   EXHIBIT C: --alright, that's enough.
 
@@ -34,7 +38,7 @@
 
   <p>a rat without it's tail is just a tailess rat</p>
 
-  <img src="../labrat/images/snoopy.jpeg" >
+  <img src="../labrat/images/snoopy.jpeg">
 
   <p>002</p>
 
@@ -61,9 +65,16 @@
   <p>010</p>
 
   <script>
-    function destroyTail(event){
-      event.target.style.visibility="hidden";
+    function destroyTail(event) {
+      event.target.style.visibility = "hidden";
+      document.getElementById('tail-tale').style.visibility = 'visible'
       //event.target.style.display="none";
     }
   </script>
+
+  <iframe style="border: double magenta 20px" src="/ratjam/index.html"></iframe>
+  <iframe style="border: none;" src="https://en.wikipedia.org/wiki/Rat"></iframe>
+
+</body>
+
 </html>

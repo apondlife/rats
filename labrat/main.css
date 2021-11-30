@@ -1,7 +1,14 @@
+
+body {
+    background-color: #ffeeff;
+}
+
 .rat{
     position: relative;
 }
 
 .ratTail{
-    position: absolute; 
+    position: absolute;
+    cursor: grab;
+    pointer-events: visible;
 }
