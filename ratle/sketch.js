@@ -10,7 +10,7 @@ let lastPosition
 
 
 let state = {
-  hasBackground: true,
+  hasBackground: false,
   isDrawing: false,
   lastDrawing: false,
   pickedColor: null,
@@ -68,7 +68,7 @@ function setup() {
         const asp = float(img.width)/float(img.height)
         if(asp > 1)
           g_background.image(img, 0, 0, HEIGHT * asp, HEIGHT);
-        else 
+        else
           g_background.image(img, 0, 0, WIDTH, WIDTH / asp);
       })
     });
