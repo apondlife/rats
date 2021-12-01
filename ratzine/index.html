@@ -2,7 +2,7 @@
   body {
     width: 100%;
     height: 100%;
-    margin: 0;
+    margin: 0px;
     background: url("../ratjam/background.jpg") no-repeat;
     background-size: cover;
     cursor: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" height="40" width="40"><text x="0" y="10" font-size="30" dominant-baseline="hanging">🧀</text></svg>'), auto;
@@ -10,6 +10,11 @@
 
   .rat {
     position: fixed;
+  }
+
+  #zine-content {
+    margin: 20px;
+
   }
 
   #labrat-container {
@@ -28,7 +33,7 @@
    padding-bottom: 10px;
    padding-top: 10px;
    padding: 10px;
-   margin: 30px;
+      margin-right: 10px;
    margin-top: 350px;
    text-align: center;
   
@@ -38,10 +43,27 @@
 
   #labrat {
 
-    margin: 20px;
     width: 100%;
     height: 700px;
 
+  }
+
+  #row2 {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 100px;
+      
+
+    height: 600px;
+  }
+
+  #poratry {
+    flex: 1;
+    margin-right: 10px;
+  }
+
+  #ratist {
+    flex: 1;
   }
 </style>
 
@@ -51,9 +73,15 @@
   <object style="display: none;">
   </object>
 
-  <div id="labrat-container" >
-    <div id="labrat-title"> labrat </div>
-    <iframe id="labrat" src="../labrat/index.html"></iframe>
+  <div id="zine-content">
+    <div id="labrat-container" >
+      <div id="labrat-title"> labrat </div>
+      <iframe id="labrat" src="../labrat/index.html"></iframe>
+    </div>
+    <div id="row2" >
+      <iframe id="poratry" src="../poratry/index.html"></iframe>
+      <iframe id="ratist" src="../ratle/index.html"></iframe>
+    </div>
   </div>
 </body>
 
