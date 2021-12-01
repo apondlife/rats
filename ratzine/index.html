@@ -3,7 +3,7 @@
     width: 100%;
     height: 100%;
     margin: 0;
-    background: url("ratjam/background.jpg") no-repeat;
+    background: url("../ratjam/background.jpg") no-repeat;
     background-size: cover;
     cursor: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" height="40" width="40"><text x="0" y="10" font-size="30" dominant-baseline="hanging">🧀</text></svg>'), auto;
   }
@@ -12,10 +12,35 @@
     position: fixed;
   }
 
+  #labrat-container {
+    display: flex;
+    justify-content: flex-end;
+
+  }
+
+  #labrat-title {
+   font-size: 64px; 
+   background-color: #ffeeff;
+     height: 64px;
+   
+   
+   
+   padding-bottom: 10px;
+   padding-top: 10px;
+   padding: 10px;
+   margin: 30px;
+   margin-top: 350px;
+   text-align: center;
+  
+  
+
+  }
+
   #labrat {
-    margin: 100px;
-    width: 500px;
-    height: 400px;
+
+    margin: 20px;
+    width: 100%;
+    height: 700px;
 
   }
 </style>
@@ -26,7 +51,10 @@
   <object style="display: none;">
   </object>
 
-  <iframe id="labrat" src="labrat/index.html"></iframe>
+  <div id="labrat-container" >
+    <div id="labrat-title"> labrat </div>
+    <iframe id="labrat" src="../labrat/index.html"></iframe>
+  </div>
 </body>
 
 <script>
@@ -43,7 +71,7 @@
     let mousePos = { x: 0, y: 0 };
 
     const ratImg = document.getElementById("rat")
-    ratImg.src = "ratjam/animation/ratframe0000.png"
+    ratImg.src = "../ratjam/animation/ratframe0000.png"
     ratImg.style.width = `${RAT_WIDTH}px`
 
     RatAnimation();
@@ -55,7 +83,7 @@
       }
 
       // show correct animation frame
-      ratImg.src = "ratjam/animation/ratframe" + String(frameOffset + ratFrame).padStart(4, '0') + ".png";
+      ratImg.src = "../ratjam/animation/ratframe" + String(frameOffset + ratFrame).padStart(4, '0') + ".png";
       ratFrame = (ratFrame + 1) % RAT_FRAMES;
 
       // make rat follow mouse position
