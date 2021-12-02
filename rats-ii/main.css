@@ -1,4 +1,8 @@
 body {
+  display: flex;
+  margin: 0;
+  height: 100vh;
+  justify-content: center;
 }
 
 * {
@@ -6,8 +10,17 @@ body {
   color: white;
 }
 
+#game-canvas {
+  display: block;
+  height: 100%;
+}
+
+#game-assets {
+  display: none;
+}
 
 #game {
+  display: none;
   overscroll-behavior-y: none;
   overscroll-behavior-x: none;
   position: absolute;

@@ -1,32 +1,35 @@
 <!doctype html>
-
 <html>
-
 <head>
-
-<title>starcraft 3</title>
-
-
-<link rel="stylesheet" type="text/css" href="./main.css" />
-
-
+  <title>RaTS ii</title>
+  <link rel="stylesheet" type="text/css" href="./main.css" />
 </head>
 
 <body>
+  <canvas id="game-canvas" width="800" height="600"></canvas>
+
+  <object id="game-assets">
+    <!-- <img id="rat-sprite" src="rat-idle-full.png"> -->
+    <img id="rat-sprite-0" src="/ratjam/animation/ratframe0000.png">
+    <img id="rat-sprite-1" src="/ratjam/animation/ratframe0001.png">
+  </object>
+
+  <script type="module" src="./rats.js"></script>
+
   <div id="game">
-    <img class="rat" src="rat-idle-full.png" 
+    <img class="rat" src="rat-idle-full.png"
          style="left: 200px; top: 300px;"/>
-    <img class="rat" src="rat-idle-full.png" 
+    <img class="rat" src="rat-idle-full.png"
          style="left: 550px; top: 340px;"/>
-    <img class="rat" src="rat-idle-full.png" 
+    <img class="rat" src="rat-idle-full.png"
          style="left: 250px; top: 640px;"/>
-    <img class="rat" src="rat-idle-full.png" 
+    <img class="rat" src="rat-idle-full.png"
          style="left: 722px; top: 892px;"/>
-    <img class="rat" src="rat-idle-full.png" 
+    <img class="rat" src="rat-idle-full.png"
          style="left: 032px; top: 928px;"/>
-    <img class="rat" src="rat-idle-full.png" 
+    <img class="rat" src="rat-idle-full.png"
          style="left: 943px; top: 992px;"/>
-    <img class="rat" src="rat-idle-full.png" 
+    <img class="rat" src="rat-idle-full.png"
          style="left: 200px; top: 300px;"/>
     <div id="selection-rect"></div>
   </div>
@@ -127,7 +130,7 @@
     // for (let i = 0; i < ev.dataTransfer.items.length; i++) {
     //   ev.dataTransfer.items[i].getAsString(function(s) {
     //     console.log(s);
-    //     
+    //
     //   });;
     // }
     // console.log(ev.dataTransfer.types);
@@ -153,7 +156,7 @@
 
       let reader = new FileReader();
 
-      
+
       reader.onload = function() {
         img.src = reader.result;
         gameElm.appendChild(img);
@@ -180,7 +183,7 @@
       }
 
       return;
-      
+
     }
 
     // else it's not a file upload, it's a thing that's being dragged
@@ -285,7 +288,7 @@
     // let left = elm.style.left;
     // let top = elm.style.top;
 
-    
+
     elm.innerHTML = s;
     elm.style.left= `${x}px`;
     elm.style.top= `${y}px`;
@@ -326,13 +329,13 @@
       let left = Math.floor(Math.random() * 900);
       ratElm.style.left= `${left}px`;
       ratElm.style.top= `${top}px`;
-      
+
     }
 
 
     // start input
     window.addEventListener("mousedown", e => {
-      
+
       // LEFT MOUSE BUTTON
       if (e.button == 0) {
 	      selRectStart = {x: e.pageX, y: e.pageY };
@@ -371,7 +374,7 @@
 
         for (let i = 0; i < rats.length; i++) {
           let ratElm = rats[i];
-          
+
           let ratStyle = window.getComputedStyle(ratElm);
           let ratY = parseInt(ratStyle.top);
           let ratX = parseInt(ratStyle.left);
@@ -449,7 +452,7 @@
       selRectElm.style.top = `${top}px`;
       selRectElm.style.width = `${width}px`;
       selRectElm.style.height = `${height}px`;
-    
+
     });
 
     // disable context menu on right click
@@ -466,13 +469,12 @@
 
     window.requestAnimationFrame(tick);
   }
-  
+
 
 
   startGame();
 
 </script>
 </body>
-
 
 </html>
