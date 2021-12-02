@@ -1,0 +1,463 @@
+<!doctype html>
+
+<html>
+
+<head>
+
+<title>starcraft 3</title>
+
+
+<link rel="stylesheet" type="text/css" href="./main.css" />
+
+
+</head>
+
+<body>
+  <div id="game">
+    <img class="rat" src="rat-idle-full.png" />
+    <div id="selection-rect"></div>
+  </div>
+
+<script>
+  let friend_guid = 0;
+
+  let have_friends = false;
+
+
+  let selRectStart = {};
+  let selRectEnd = {};
+  let selRectElm = document.getElementById("selection-rect");
+
+
+
+  const playerElm = document.getElementById("player");
+  const playerTextElm = document.getElementById("player-text");
+
+  let playerLinesIdx = 0;
+  const playerLines = [
+    "??????",
+    "did i just--",
+    "...move??",
+    "what is this feeling?",
+    "wow i didn't know i had this in me",
+    "a whole new world of possibility!!",
+    "wow!!",
+    "",
+    "look at me, popping around",
+    "not a care in the world",
+    "",
+    "",
+    "weeeeeeeeeee",
+    "wooooooo",
+    "",
+    "",
+    "",
+    "",
+    "nice",
+    "",
+    "",
+    "",
+    "this is...",
+    "cool",
+    "",
+    "",
+    "yeah",
+    "",
+    "",
+    "",
+    "<i>sigh</i>",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "why do i still feel empty",
+    "",
+    "",
+    "",
+    "and lonely",
+    "",
+    "",
+    "",
+  ];
+
+  const sounds = [
+    "bop",
+    "beep",
+    "boop boop",
+    "dee dum",
+    "buzim",
+    "wop wop",
+    "woahhaa",
+    "yeedaboo",
+  ];
+
+  // thank you https://www.w3schools.com/html/html5_draganddrop.asp
+
+
+
+  function drag(ev) {
+    console.log("starting drag! for " + ev.target.id);
+    ev.dataTransfer.setData("text", ev.target.id);
+    ev.dataTransfer.dropEffect = "move";
+  }
+
+  function allowDrop(ev) {
+    ev.dataTransfer.dropEffect = "move";
+    ev.preventDefault();
+  }
+
+  function drop(ev) {
+    ev.preventDefault();
+    // console.log(ev.dataTransfer.items);
+    // for (let i = 0; i < ev.dataTransfer.items.length; i++) {
+    //   ev.dataTransfer.items[i].getAsString(function(s) {
+    //     console.log(s);
+    //     
+    //   });;
+    // }
+    // console.log(ev.dataTransfer.types);
+
+    let textX = ev.pageX - 40;
+    let textY = ev.pageY - 80;
+
+
+    let files = ev.dataTransfer.files;
+    if (files.length == 1){
+      // make a friend
+      // thank you https://stackoverflow.com/questions/31710127/javascript-image-upload-and-display
+      let file = files[0];
+      var img = new Image(100);
+      img.id = "friend" + friend_guid;
+
+      img.classList.add("friend");
+      img.ondragstart = drag;
+
+
+      img.style.left= `${ev.pageX}px`;
+      img.style.top= `${ev.pageY}px`;
+
+      let reader = new FileReader();
+
+      
+      reader.onload = function() {
+        img.src = reader.result;
+        gameElm.appendChild(img);
+      };
+
+      reader.onerror = function() {
+        console.log("reader error!");
+        console.log(reader.error);
+
+      };
+      reader.readAsDataURL(file);
+
+      let text = document.createElement('div');
+      text.id = "friendText" + friend_guid;
+      gameElm.appendChild(text);
+      speak(text, textX, textY, "hi!");
+      friend_guid += 1;
+
+
+      if (!have_friends) {
+        // first friend!
+        have_friends = true;
+
+      }
+
+      return;
+      
+    }
+
+    // else it's not a file upload, it's a thing that's being dragged
+    const id = ev.dataTransfer.getData("text");
+
+
+    console.log("moved " + id);
+
+    //let imgHTML = ev.dataTransfer.getData("text/html");
+
+    let elm = document.getElementById(id);
+    elm.style.left= `${ev.pageX}px`;
+    elm.style.top= `${ev.pageY}px`;
+
+
+
+
+
+    // we're movinv the player!
+    if (id == "player") {
+
+      if (have_friends) {
+        speak(playerTextElm, textX, textY,  randSound());
+        return;
+      }
+
+      if (playerLinesIdx < playerLines.length) {
+        speak(playerTextElm, textX, textY, playerLines[playerLinesIdx]);
+        playerLinesIdx++;
+      } else {
+        speak(playerTextElm, textX, textY,  "i wish i had a friend");
+      }
+
+    } else {
+      // moving a friend
+      let friendTextId = "friendText" + id.substring(6);
+      let textElm = document.getElementById(friendTextId);
+      speak(textElm, textX, textY, randSound());
+    }
+
+    // ev.target.appendChild(document.getElementById(data));
+  }
+
+  let player = {};
+  player.pos = {x: 200, y: 200}
+  player.speed = .1;
+
+  // mostly copied from
+  // https://github.com/MaxBittker/walky/blob/master/src/movement.ts
+  function updatePlayer(player) {
+
+    let velocity = {x : 0, y: 0};
+    let pos = player.pos;
+
+    if (target != null) {
+      if (Math.abs(target.x - pos.x) > 10) {
+        velocity.x = player.speed * delta_time * (target.x < pos.x ? -1 : 1);
+      } else {
+        velocity.x = 0;
+      }
+
+      if (Math.abs(target.y - pos.y) > 10) {
+        velocity.y = player.speed * delta_time * (target.y < pos.y ? -1 : 1);
+      } else {
+        velocity.y = 0;
+      }
+
+    }
+
+
+    //console.log(player);
+    player.pos.x = player.pos.x + velocity.x;
+    player.pos.y = player.pos.y + velocity.y
+
+    // idk why i cna't do this outside of the fucntion...
+    playerElm.style.left= `${player.pos.x}px`;
+    playerElm.style.top= `${player.pos.y}px`;
+
+  }
+
+  let ratSpeed = .5;
+  let rats;
+  function updateRat(ratElm) {
+
+    if (!ratElm.moving) {
+      return;
+    }
+
+    let velocity = {x : 0, y: 0};
+
+    let ratStyle = window.getComputedStyle(ratElm);
+    let ratTop = parseInt(ratStyle.top);
+    let ratLeft = parseInt(ratStyle.left);
+
+    if (target != null) {
+      if (Math.abs(target.x - ratLeft) > 10) {
+        velocity.x = ratSpeed * delta_time * (target.x < ratLeft ? -1 : 1);
+      } else {
+        velocity.x = 0;
+      }
+
+      if (Math.abs(target.y - ratTop) > 10) {
+        velocity.y = ratSpeed * delta_time * (target.y < ratTop ? -1 : 1);
+      } else {
+        velocity.y = 0;
+      }
+
+    }
+
+    if (velocity.x == 0 && velocity.y == 0) {
+      ratElm.moving == false;
+    } else {
+      //console.log(player);
+      ratLeft = ratLeft + velocity.x;
+      ratTop = ratTop + velocity.y
+
+      ratElm.style.left= `${ratLeft}px`;
+      ratElm.style.top= `${ratTop}px`;
+    }
+
+  }
+
+  function randSound() {
+    return sounds[Math.floor(Math.random() * sounds.length)];
+
+  }
+
+  // move elm to x, y with text s
+  function speak(elm, x, y, s) {
+
+    // let left = player.pos.x - 40;
+    // let top = player.pos.y - 80;
+
+    // let left = elm.style.left;
+    // let top = elm.style.top;
+
+    
+    elm.innerHTML = s;
+    elm.style.left= `${x}px`;
+    elm.style.top= `${y}px`;
+
+
+  }
+
+  const gameElm = document.getElementById("game");
+
+  // where the player is trying to walk toward
+  let target = {x: 200, y: 200};
+  let last_tick = Date.now();
+  let delta_time = 0;
+  let tick_num = 0;
+  function tick() {
+
+    delta_time= Date.now() - last_tick;
+    last_tick = Date.now();
+    tick_num++;
+
+    for (let i = 0; i < rats.length; i++) {
+      updateRat(rats[i]);
+    }
+
+
+    window.requestAnimationFrame(tick);
+  }
+
+
+  function startGame() {
+
+    // get rats
+    rats = document.getElementsByClassName("rat");
+
+    // start input
+    window.addEventListener("mousedown", e => {
+      
+      // LEFT MOUSE BUTTON
+      if (e.button == 0) {
+	      selRectStart = {x: e.pageX, y: e.pageY };
+	      selRectEnd = {x: e.pageX, y: e.pageY };
+
+        selRectElm.style.left = `${selRectStart.x}px`;
+        selRectElm.style.top = `${selRectStart.y}px`;
+        selRectElm.style.width = "0px";
+        selRectElm.style.height = "0px";
+        selRectElm.style.display = "block";
+      }
+
+      // RIGHT MOUSE BUTTON
+      if (e.button == 2) {
+	      target = {x: e.pageX, y: e.pageY };
+        console.log(target);
+
+        for (let i = 0; i < rats.length; i++) {
+          let ratElm = rats[i];
+          if (ratElm.selected) {
+            ratElm.moving = true;
+          }
+        }
+      }
+
+    });
+
+    window.addEventListener("mouseup", e => {
+
+      // LEFT MOUSE BUTTON
+      if (e.button == 0) {
+        selRectElm.style.display = "none";
+
+        // figure out who's in the selection area
+
+        for (let i = 0; i < rats.length; i++) {
+          let ratElm = rats[i];
+          
+          let ratStyle = window.getComputedStyle(ratElm);
+          let ratTop = parseInt(ratStyle.top);
+          let ratLeft = parseInt(ratStyle.left);
+
+          if (selRectStart.x <= ratLeft && selRectEnd.x >= ratLeft &&
+              selRectStart.y <= ratTop && selRectEnd.y >= ratTop) {
+            ratElm.style.borderStyle = "solid";
+            ratElm.style.borderWidth = "2px";
+            ratElm.style.borderColor = "aquamarine";
+            ratElm.selected = true;
+            console.log("selected!");
+          } else {
+            ratElm.style.borderStyle = "none";
+            ratElm.selected = false;
+            console.log("un selected!");
+
+          }
+
+          
+
+        }
+      }
+
+      if (e.button == 2) {
+      }
+
+    });
+
+    window.addEventListener("mousemove", e => {
+	    selRectEnd = {x: e.pageX, y: e.pageY };
+
+      // draw rectangle
+
+      // if we drag the mouse to the left/north of where we started, we
+      // we'll get a negative width/height, so we account for that
+
+      let left = selRectStart.x;
+      let top = selRectStart.y;
+
+      if (selRectEnd.x < selRectStart.x) {
+        left = selRectEnd.x;
+      }
+
+      if (selRectEnd.y < selRectStart.y) {
+        top = selRectEnd.y;
+      }
+
+      let width = Math.abs(selRectEnd.x - selRectStart.x);
+      let height = Math.abs(selRectEnd.y - selRectStart.y);
+
+      selRectElm.style.left = `${left}px`;
+      selRectElm.style.top = `${top}px`;
+      selRectElm.style.width = `${width}px`;
+      selRectElm.style.height = `${height}px`;
+    
+    });
+
+    // disable context menu on right click
+    window.addEventListener("contextmenu", e => e.preventDefault());
+
+    window.addEventListener("dragend", e => {
+	dragTarget = {x: e.pageX, y: e.pageY };
+	// console.log(e.pageX);
+	// console.log(e.pageY);
+
+    });
+
+
+
+    window.requestAnimationFrame(tick);
+  }
+  
+
+
+  startGame();
+
+</script>
+</body>
+
+
+</html>

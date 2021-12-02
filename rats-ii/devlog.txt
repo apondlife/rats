@@ -1,0 +1,97 @@
+
+now:  multiple rats
+
+later:
+get some rat gifs
+background music
+
+# 10/17
+
+i haven't done anything since wednesday. and i didn't really do anything on wednesday...
+let's make an rts
+
+first let's draw a rectangle
+
+yay it works
+
+i wanted to try to get some gifs of rats from the videos i took
+but that will porbably be a lot of work...
+lets get a leaf background first
+
+# 10/13
+
+let's make some money
+
+the prompt this week is "cashing out"
+
+i've been doing some research for the last hour
+
+mut linked this https://newforum.droqen.com/index.php?topic=93
+which is really interesting and timely
+
+droqen mentions this http://www.oikospiel.com/ which is a cannonical example
+
+also a cannonical example: https://www.youtube.com/watch?v=E8Lhqri8tZk
+
+i haven't watchted the slot machine video in a while. i think i felt pretty mixed on it the first time i saw it. i still feel mixed. it's an interesting experiment, but i think the end result was pretty egregious, and Alex and Ziba don't seem to realize it.
+
+they point out they didn't take players' money or data. but i wonder how much time was spent in these addictive apps. is it not predatory to waste people's time? maybe it's even arguably worse than taking people's money?
+
+and they did facilitate the extraction and monetization of their players' data. maybe they didn't keep or sell it themselves, but i'm sure the ad companies they worked with got some value out of tracking what sorts of players clicked on their ads etc.
+
+i do think that the nature of experimentation is that you can't foresee all the implications of the experiment. still, i think it's worth it to be more critical
+
+in droqen's words, they played with real materials
+
+interestingly, ziba went on to make https://popcannibal.com/kindwords/
+that's a whole other can of worms
+
+there's something here about the similarities of kind words and these slot machines. they're both escapes, anesthetics. 
+there was a period of my life where i worked a job that i hated. i would listen to lofi hip hop at work and sometimes get high before work and that made it a lot more bearable. and then at night i'd get high and play Overwatch every night.
+
+i'm interested in addiction.
+i still have periods where i'll play the same videogame every night. these days its starcraft. different game, same company
+i like starcraft, but i don't have healthy relationship with it
+
+maybe i'll make an rts
+
+
+
+
+ok SO
+some ideas:
+
+make an RTS
+put a slot machine in the forest with some research about addiction
+punk RTS
+personal RTS
+
+
+ugh now that i've realized this is a good opportunity for the RTS, i can't get it out of my head
+
+
+aaaaaand now i'm getting into pathfinding
+
+
+https://www.npmjs.com/package/pathfinding
+
+
+oof i don't think i can make an rts in a week
+so much to implement
+
+pathfinding/flocking algorithms
+unit selecting
+-drawing the rectangle
+-showing which units are selected
+sprites/gifs for walking - probably in 8 directions to make it actually satifisfying
+
+interesting pathfinding article
+http://striketactics.net/devblog/starcraft-1-pathfinding-technical-analysis
+
+
+woah https://dawnarc.com/2018/07/algorithmsstarcraft-2s-ai-algorithm/
+
+
+oo primary source https://www.codeofhonor.com/blog/the-starcraft-path-finding-hack
+
+https://www.codeofhonor.com/blog/tough-times-on-the-road-to-starcraft#path-finding
