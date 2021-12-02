@@ -40,6 +40,7 @@ class Game {
 
     // the rats
     this.rats = [new Rat()]
+    this.selection = null
 
     // get sprites
     this.sprites = {
@@ -77,6 +78,13 @@ class Game {
       const target = getMouseVector(e)
       if(e.button == 0) {
         mouse.leftButton = false
+
+        for (const rat of this.rats) {
+          const p = rat.pos
+          rat.selected = this.selection.intersect(new Box(p.x, p.y, p.x, p.y))
+        }
+
+        this.selection = null
       }
 
       if (e.button == 2) {
@@ -91,6 +99,7 @@ class Game {
       if (e.button == 0) {
         mouse.leftButton = true
         this.rats.push(new Rat(mousePos))
+        this.selection = new Box(mousePos.x, mousePos.y, mousePos.x, mousePos.y)
       }
 
       // RIGHT MOUSE BUTTON
@@ -103,7 +112,7 @@ class Game {
         const noise = 70.0
 
         let i = 0
-        for (const rat of shuffle(this.rats)) {
+        for (const rat of shuffle(this.rats.filter(r => r.selected))) {
           const noiseX = (Math.random() * 2 - 1) * noise;
           const noiseY = (Math.random() * 2 - 1) * noise;
 
@@ -122,6 +131,8 @@ class Game {
       const target = getMouseVector(e)
       if(mouse.leftButton) {
         this.rats.push(new Rat(target))
+        this.selection.xmax = target.x;
+        this.selection.ymax = target.y;
       }
     });
   }
@@ -150,11 +161,28 @@ class Game {
     ctx.fillStyle = "green"
     ctx.fillRect(0, 0, $el.width, $el.height)
 
+    // draw selection box
+    if (this.selection != null) {
+      const s = this.selection
+
+      ctx.strokeStyle = "red";
+      ctx.lineWidth = "6";
+      ctx.beginPath();
+      ctx.rect(s.xmin, s.ymin, s.xmax - s.xmin, s.ymax - s.ymin)
+      ctx.stroke();
+    }
+
     // draw rats
     const sprite = this.sprites.rat
     const frame = Math.floor((this.time / 100.0) % sprite.length)
     for(const rat of this.rats) {
       ctx.drawImage(sprite[frame], rat.pos.x, rat.pos.y, rat.size.x, rat.size.y)
+      if(!rat.selected) continue
+      ctx.strokeStyle = "yellow";
+      ctx.lineWidth = "2";
+      ctx.beginPath();
+      ctx.rect(rat.pos.x, rat.pos.y, rat.size.x, rat.size.y)
+      ctx.stroke();
     }
   }
 }
