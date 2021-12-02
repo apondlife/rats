@@ -2,7 +2,7 @@
 
 <head>
   <title>ratist</title>
-  <script src="./lib/p5.min.js"></script>
+  <script src="/lib/p5.min.js"></script>
   <script src="sketch.js"></script>
   <style>
     body {
@@ -13,6 +13,7 @@
       overflow: hidden;
       background-color: #ffeeff;
     }
+
     .canvas-container {
       border: black solid 5px;
     }
@@ -41,20 +42,22 @@
       height: 100%;
       width: 90%;
     }
+
     .input-container button {
       height: 100%;
       width: 90%;
     }
+
     .input-toggler {
       position: fixed;
-      left:50%;
+      left: 50%;
       transform-origin: 50% 50%;
       top: 2%;
       z-index: 100;
     }
   </style>
   <script>
-    function toggleInput(){
+    function toggleInput() {
       const container = document.getElementById("input-container")
       if (container.style.display === "none") {
         container.style.display = "flex"
@@ -69,7 +72,7 @@
   <div id="canvas-container" class="canvas-container"></div>
 
   <button class="input-toggler" id="input-toggler" onclick="toggleInput()">⚙️</button>
-  <div id="input-container" class="input-container">
+  <div id="input-container" class="input-container" style="display: none;">
     <div>
       <button id="toggle-button" type="file" accept="image/*">mostrar referencia</button>
     </div>
