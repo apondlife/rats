@@ -39,15 +39,18 @@ class Game {
     this.ctx = $el.getContext("2d")
 
     // the rats
-    this.rats = [new Rat()]
+    this.rats = []
     this.selection = null
+    this.cheese = null
+    this.cheeseTimeout = null
 
     // get sprites
     this.sprites = {
       rat: [
         document.getElementById("rat-sprite-0"),
         document.getElementById("rat-sprite-1"),
-      ]
+      ],
+      background: document.getElementById("background"),
     }
   }
 
@@ -112,6 +115,8 @@ class Game {
         const noise = 70.0
 
         let i = 0
+        this.cheese = mousePos.clone()
+        this.cheeseTimeout = setTimeout(() => this.cheese = null, 1000)
         for (const rat of shuffle(this.rats.filter(r => r.selected))) {
           const noiseX = (Math.random() * 2 - 1) * noise;
           const noiseY = (Math.random() * 2 - 1) * noise;
@@ -131,8 +136,19 @@ class Game {
       const target = getMouseVector(e)
       if(mouse.leftButton) {
         this.rats.push(new Rat(target))
-        this.selection.xmax = target.x;
-        this.selection.ymax = target.y;
+
+        // make selection work in any direction
+        if(target.x <= this.selection.xmin) {
+          this.selection.xmin = target.x
+        } else {
+          this.selection.xmax = target.x
+        }
+
+        if(target.y <= this.selection.ymin) {
+          this.selection.ymin = target.y;
+        } else {
+          this.selection.ymax = target.y;
+        }
       }
     });
   }
@@ -159,30 +175,34 @@ class Game {
 
     // draw bg
     ctx.fillStyle = "green"
-    ctx.fillRect(0, 0, $el.width, $el.height)
+    ctx.drawImage(this.sprites.background, 0, 0, $el.width * 2, $el.height * 2)
 
     // draw selection box
     if (this.selection != null) {
       const s = this.selection
 
-      ctx.strokeStyle = "red";
+      ctx.strokeStyle = "yellow";
       ctx.lineWidth = "6";
       ctx.beginPath();
       ctx.rect(s.xmin, s.ymin, s.xmax - s.xmin, s.ymax - s.ymin)
       ctx.stroke();
     }
 
+    // draw the cheese (rats target)
+    if (this.cheese != null) {
+      ctx.font = "30px Arial";
+      ctx.fillText("🧀", this.cheese.x, this.cheese.y);
+    }
+
     // draw rats
     const sprite = this.sprites.rat
     const frame = Math.floor((this.time / 100.0) % sprite.length)
     for(const rat of this.rats) {
-      ctx.drawImage(sprite[frame], rat.pos.x, rat.pos.y, rat.size.x, rat.size.y)
-      if(!rat.selected) continue
-      ctx.strokeStyle = "yellow";
-      ctx.lineWidth = "2";
-      ctx.beginPath();
-      ctx.rect(rat.pos.x, rat.pos.y, rat.size.x, rat.size.y)
-      ctx.stroke();
+      let img = sprite[frame]
+      if(!rat.selected) {
+        img = sprite[0]
+      }
+      ctx.drawImage(img, rat.pos.x, rat.pos.y, rat.size.x, rat.size.y)
     }
   }
 }

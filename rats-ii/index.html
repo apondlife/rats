@@ -1,8 +1,14 @@
 <!doctype html>
 <html>
+
 <head>
   <title>RaTS ii</title>
   <link rel="stylesheet" type="text/css" href="./main.css" />
+  <style>
+    body {
+      background-color: #FFEEFF;
+    }
+  </style>
 </head>
 
 <body>
@@ -12,469 +18,463 @@
     <!-- <img id="rat-sprite" src="rat-idle-full.png"> -->
     <img id="rat-sprite-0" src="/ratjam/animation/ratframe0000.png">
     <img id="rat-sprite-1" src="/ratjam/animation/ratframe0001.png">
+    <img id="background" src="/rats-ii/background.gif">
   </object>
 
   <script type="module" src="./rats.js"></script>
 
   <div id="game">
-    <img class="rat" src="rat-idle-full.png"
-         style="left: 200px; top: 300px;"/>
-    <img class="rat" src="rat-idle-full.png"
-         style="left: 550px; top: 340px;"/>
-    <img class="rat" src="rat-idle-full.png"
-         style="left: 250px; top: 640px;"/>
-    <img class="rat" src="rat-idle-full.png"
-         style="left: 722px; top: 892px;"/>
-    <img class="rat" src="rat-idle-full.png"
-         style="left: 032px; top: 928px;"/>
-    <img class="rat" src="rat-idle-full.png"
-         style="left: 943px; top: 992px;"/>
-    <img class="rat" src="rat-idle-full.png"
-         style="left: 200px; top: 300px;"/>
+    <img class="rat" src="rat-idle-full.png" style="left: 200px; top: 300px;" />
+    <img class="rat" src="rat-idle-full.png" style="left: 550px; top: 340px;" />
+    <img class="rat" src="rat-idle-full.png" style="left: 250px; top: 640px;" />
+    <img class="rat" src="rat-idle-full.png" style="left: 722px; top: 892px;" />
+    <img class="rat" src="rat-idle-full.png" style="left: 032px; top: 928px;" />
+    <img class="rat" src="rat-idle-full.png" style="left: 943px; top: 992px;" />
+    <img class="rat" src="rat-idle-full.png" style="left: 200px; top: 300px;" />
     <div id="selection-rect"></div>
   </div>
 
-<script>
-  let friend_guid = 0;
+  <script>
+    let friend_guid = 0;
 
-  let have_friends = false;
-
-
-  let selRectStart = {};
-  let selRectEnd = {};
-  let selRectElm = document.getElementById("selection-rect");
+    let have_friends = false;
 
 
-
-  const playerElm = document.getElementById("player");
-  const playerTextElm = document.getElementById("player-text");
-
-  let playerLinesIdx = 0;
-  const playerLines = [
-    "??????",
-    "did i just--",
-    "...move??",
-    "what is this feeling?",
-    "wow i didn't know i had this in me",
-    "a whole new world of possibility!!",
-    "wow!!",
-    "",
-    "look at me, popping around",
-    "not a care in the world",
-    "",
-    "",
-    "weeeeeeeeeee",
-    "wooooooo",
-    "",
-    "",
-    "",
-    "",
-    "nice",
-    "",
-    "",
-    "",
-    "this is...",
-    "cool",
-    "",
-    "",
-    "yeah",
-    "",
-    "",
-    "",
-    "<i>sigh</i>",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "",
-    "why do i still feel empty",
-    "",
-    "",
-    "",
-    "and lonely",
-    "",
-    "",
-    "",
-  ];
-
-  const sounds = [
-    "bop",
-    "beep",
-    "boop boop",
-    "dee dum",
-    "buzim",
-    "wop wop",
-    "woahhaa",
-    "yeedaboo",
-  ];
-
-  // thank you https://www.w3schools.com/html/html5_draganddrop.asp
+    let selRectStart = {};
+    let selRectEnd = {};
+    let selRectElm = document.getElementById("selection-rect");
 
 
 
-  function drag(ev) {
-    console.log("starting drag! for " + ev.target.id);
-    ev.dataTransfer.setData("text", ev.target.id);
-    ev.dataTransfer.dropEffect = "move";
-  }
+    const playerElm = document.getElementById("player");
+    const playerTextElm = document.getElementById("player-text");
 
-  function allowDrop(ev) {
-    ev.dataTransfer.dropEffect = "move";
-    ev.preventDefault();
-  }
+    let playerLinesIdx = 0;
+    const playerLines = [
+      "??????",
+      "did i just--",
+      "...move??",
+      "what is this feeling?",
+      "wow i didn't know i had this in me",
+      "a whole new world of possibility!!",
+      "wow!!",
+      "",
+      "look at me, popping around",
+      "not a care in the world",
+      "",
+      "",
+      "weeeeeeeeeee",
+      "wooooooo",
+      "",
+      "",
+      "",
+      "",
+      "nice",
+      "",
+      "",
+      "",
+      "this is...",
+      "cool",
+      "",
+      "",
+      "yeah",
+      "",
+      "",
+      "",
+      "<i>sigh</i>",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "why do i still feel empty",
+      "",
+      "",
+      "",
+      "and lonely",
+      "",
+      "",
+      "",
+    ];
 
-  function drop(ev) {
-    ev.preventDefault();
-    // console.log(ev.dataTransfer.items);
-    // for (let i = 0; i < ev.dataTransfer.items.length; i++) {
-    //   ev.dataTransfer.items[i].getAsString(function(s) {
-    //     console.log(s);
-    //
-    //   });;
-    // }
-    // console.log(ev.dataTransfer.types);
+    const sounds = [
+      "bop",
+      "beep",
+      "boop boop",
+      "dee dum",
+      "buzim",
+      "wop wop",
+      "woahhaa",
+      "yeedaboo",
+    ];
 
-    let textX = ev.pageX - 40;
-    let textY = ev.pageY - 80;
-
-
-    let files = ev.dataTransfer.files;
-    if (files.length == 1){
-      // make a friend
-      // thank you https://stackoverflow.com/questions/31710127/javascript-image-upload-and-display
-      let file = files[0];
-      var img = new Image(100);
-      img.id = "friend" + friend_guid;
-
-      img.classList.add("friend");
-      img.ondragstart = drag;
+    // thank you https://www.w3schools.com/html/html5_draganddrop.asp
 
 
-      img.style.left= `${ev.pageX}px`;
-      img.style.top= `${ev.pageY}px`;
 
-      let reader = new FileReader();
+    function drag(ev) {
+      console.log("starting drag! for " + ev.target.id);
+      ev.dataTransfer.setData("text", ev.target.id);
+      ev.dataTransfer.dropEffect = "move";
+    }
+
+    function allowDrop(ev) {
+      ev.dataTransfer.dropEffect = "move";
+      ev.preventDefault();
+    }
+
+    function drop(ev) {
+      ev.preventDefault();
+      // console.log(ev.dataTransfer.items);
+      // for (let i = 0; i < ev.dataTransfer.items.length; i++) {
+      //   ev.dataTransfer.items[i].getAsString(function(s) {
+      //     console.log(s);
+      //
+      //   });;
+      // }
+      // console.log(ev.dataTransfer.types);
+
+      let textX = ev.pageX - 40;
+      let textY = ev.pageY - 80;
 
 
-      reader.onload = function() {
-        img.src = reader.result;
-        gameElm.appendChild(img);
-      };
+      let files = ev.dataTransfer.files;
+      if (files.length == 1) {
+        // make a friend
+        // thank you https://stackoverflow.com/questions/31710127/javascript-image-upload-and-display
+        let file = files[0];
+        var img = new Image(100);
+        img.id = "friend" + friend_guid;
 
-      reader.onerror = function() {
-        console.log("reader error!");
-        console.log(reader.error);
-
-      };
-      reader.readAsDataURL(file);
-
-      let text = document.createElement('div');
-      text.id = "friendText" + friend_guid;
-      gameElm.appendChild(text);
-      speak(text, textX, textY, "hi!");
-      friend_guid += 1;
+        img.classList.add("friend");
+        img.ondragstart = drag;
 
 
-      if (!have_friends) {
-        // first friend!
-        have_friends = true;
+        img.style.left = `${ev.pageX}px`;
+        img.style.top = `${ev.pageY}px`;
+
+        let reader = new FileReader();
+
+
+        reader.onload = function () {
+          img.src = reader.result;
+          gameElm.appendChild(img);
+        };
+
+        reader.onerror = function () {
+          console.log("reader error!");
+          console.log(reader.error);
+
+        };
+        reader.readAsDataURL(file);
+
+        let text = document.createElement('div');
+        text.id = "friendText" + friend_guid;
+        gameElm.appendChild(text);
+        speak(text, textX, textY, "hi!");
+        friend_guid += 1;
+
+
+        if (!have_friends) {
+          // first friend!
+          have_friends = true;
+
+        }
+
+        return;
 
       }
 
-      return;
+      // else it's not a file upload, it's a thing that's being dragged
+      const id = ev.dataTransfer.getData("text");
 
+
+      console.log("moved " + id);
+
+      //let imgHTML = ev.dataTransfer.getData("text/html");
+
+      let elm = document.getElementById(id);
+      elm.style.left = `${ev.pageX}px`;
+      elm.style.top = `${ev.pageY}px`;
+
+
+
+
+
+      // we're movinv the player!
+      if (id == "player") {
+
+        if (have_friends) {
+          speak(playerTextElm, textX, textY, randSound());
+          return;
+        }
+
+        if (playerLinesIdx < playerLines.length) {
+          speak(playerTextElm, textX, textY, playerLines[playerLinesIdx]);
+          playerLinesIdx++;
+        } else {
+          speak(playerTextElm, textX, textY, "i wish i had a friend");
+        }
+
+      } else {
+        // moving a friend
+        let friendTextId = "friendText" + id.substring(6);
+        let textElm = document.getElementById(friendTextId);
+        speak(textElm, textX, textY, randSound());
+      }
+
+      // ev.target.appendChild(document.getElementById(data));
     }
 
-    // else it's not a file upload, it's a thing that's being dragged
-    const id = ev.dataTransfer.getData("text");
+    let player = {};
+    player.pos = { x: 200, y: 200 }
+    player.speed = .1;
 
+    // https://github.com/MaxBittker/walky/blob/master/src/movement.ts
+    let ratSpeed = .5;
+    let rats;
+    function updateRat(ratElm) {
 
-    console.log("moved " + id);
-
-    //let imgHTML = ev.dataTransfer.getData("text/html");
-
-    let elm = document.getElementById(id);
-    elm.style.left= `${ev.pageX}px`;
-    elm.style.top= `${ev.pageY}px`;
-
-
-
-
-
-    // we're movinv the player!
-    if (id == "player") {
-
-      if (have_friends) {
-        speak(playerTextElm, textX, textY,  randSound());
+      if (!ratElm.moving) {
         return;
       }
 
-      if (playerLinesIdx < playerLines.length) {
-        speak(playerTextElm, textX, textY, playerLines[playerLinesIdx]);
-        playerLinesIdx++;
+      let velocity = { x: 0, y: 0 };
+
+      let ratStyle = window.getComputedStyle(ratElm);
+      let ratY = parseInt(ratStyle.top);
+      let ratX = parseInt(ratStyle.left);
+
+      if (target != null) {
+        if (Math.abs(target.x - ratX) > 10) {
+          velocity.x = ratSpeed * delta_time * (target.x < ratX ? -1 : 1);
+        } else {
+          velocity.x = 0;
+        }
+
+        if (Math.abs(target.y - ratY) > 10) {
+          velocity.y = ratSpeed * delta_time * (target.y < ratY ? -1 : 1);
+        } else {
+          velocity.y = 0;
+        }
+
+      }
+
+      if (velocity.x == 0 && velocity.y == 0) {
+        ratElm.moving = false;
       } else {
-        speak(playerTextElm, textX, textY,  "i wish i had a friend");
-      }
+        //console.log(player);
+        ratX = ratX + velocity.x;
+        ratY = ratY + velocity.y
 
-    } else {
-      // moving a friend
-      let friendTextId = "friendText" + id.substring(6);
-      let textElm = document.getElementById(friendTextId);
-      speak(textElm, textX, textY, randSound());
-    }
-
-    // ev.target.appendChild(document.getElementById(data));
-  }
-
-  let player = {};
-  player.pos = {x: 200, y: 200}
-  player.speed = .1;
-
-  // https://github.com/MaxBittker/walky/blob/master/src/movement.ts
-  let ratSpeed = .5;
-  let rats;
-  function updateRat(ratElm) {
-
-    if (!ratElm.moving) {
-      return;
-    }
-
-    let velocity = {x : 0, y: 0};
-
-    let ratStyle = window.getComputedStyle(ratElm);
-    let ratY = parseInt(ratStyle.top);
-    let ratX = parseInt(ratStyle.left);
-
-    if (target != null) {
-      if (Math.abs(target.x - ratX) > 10) {
-        velocity.x = ratSpeed * delta_time * (target.x < ratX ? -1 : 1);
-      } else {
-        velocity.x = 0;
-      }
-
-      if (Math.abs(target.y - ratY) > 10) {
-        velocity.y = ratSpeed * delta_time * (target.y < ratY ? -1 : 1);
-      } else {
-        velocity.y = 0;
+        ratElm.style.left = `${ratX}px`;
+        ratElm.style.top = `${ratY}px`;
       }
 
     }
 
-    if (velocity.x == 0 && velocity.y == 0) {
-      ratElm.moving = false;
-    } else {
-      //console.log(player);
-      ratX = ratX + velocity.x;
-      ratY = ratY + velocity.y
-
-      ratElm.style.left= `${ratX}px`;
-      ratElm.style.top= `${ratY}px`;
-    }
-
-  }
-
-  function randSound() {
-    return sounds[Math.floor(Math.random() * sounds.length)];
-
-  }
-
-  // move elm to x, y with text s
-  function speak(elm, x, y, s) {
-
-    // let left = player.pos.x - 40;
-    // let top = player.pos.y - 80;
-
-    // let left = elm.style.left;
-    // let top = elm.style.top;
-
-
-    elm.innerHTML = s;
-    elm.style.left= `${x}px`;
-    elm.style.top= `${y}px`;
-
-
-  }
-
-  const gameElm = document.getElementById("game");
-
-  // where the player is trying to walk toward
-  let target = {x: 200, y: 200};
-  let last_tick = Date.now();
-  let delta_time = 0;
-  let tick_num = 0;
-  function tick() {
-
-    delta_time= Date.now() - last_tick;
-    last_tick = Date.now();
-    tick_num++;
-
-    for (let i = 0; i < rats.length; i++) {
-      updateRat(rats[i]);
-    }
-
-
-    window.requestAnimationFrame(tick);
-  }
-
-
-  function startGame() {
-
-    // scatter rats about the page
-    rats = document.getElementsByClassName("rat");
-    for (let i = 0; i < rats.length; i++) {
-      let ratElm = rats[i];
-
-      let top = Math.floor(Math.random() * 900);
-      let left = Math.floor(Math.random() * 900);
-      ratElm.style.left= `${left}px`;
-      ratElm.style.top= `${top}px`;
+    function randSound() {
+      return sounds[Math.floor(Math.random() * sounds.length)];
 
     }
 
+    // move elm to x, y with text s
+    function speak(elm, x, y, s) {
 
-    // start input
-    window.addEventListener("mousedown", e => {
+      // let left = player.pos.x - 40;
+      // let top = player.pos.y - 80;
 
-      // LEFT MOUSE BUTTON
-      if (e.button == 0) {
-	      selRectStart = {x: e.pageX, y: e.pageY };
-	      selRectEnd = {x: e.pageX, y: e.pageY };
+      // let left = elm.style.left;
+      // let top = elm.style.top;
 
-        selRectElm.style.left = `${selRectStart.x}px`;
-        selRectElm.style.top = `${selRectStart.y}px`;
-        selRectElm.style.width = "0px";
-        selRectElm.style.height = "0px";
-        selRectElm.style.display = "block";
+
+      elm.innerHTML = s;
+      elm.style.left = `${x}px`;
+      elm.style.top = `${y}px`;
+
+
+    }
+
+    const gameElm = document.getElementById("game");
+
+    // where the player is trying to walk toward
+    let target = { x: 200, y: 200 };
+    let last_tick = Date.now();
+    let delta_time = 0;
+    let tick_num = 0;
+    function tick() {
+
+      delta_time = Date.now() - last_tick;
+      last_tick = Date.now();
+      tick_num++;
+
+      for (let i = 0; i < rats.length; i++) {
+        updateRat(rats[i]);
       }
 
-      // RIGHT MOUSE BUTTON
-      if (e.button == 2) {
-	      target = {x: e.pageX, y: e.pageY };
-        console.log(target);
 
-        for (let i = 0; i < rats.length; i++) {
-          let ratElm = rats[i];
-          if (ratElm.selected == true) {
-            ratElm.moving = true;
-            console.log(ratElm);
+      window.requestAnimationFrame(tick);
+    }
+
+
+    function startGame() {
+
+      // scatter rats about the page
+      rats = document.getElementsByClassName("rat");
+      for (let i = 0; i < rats.length; i++) {
+        let ratElm = rats[i];
+
+        let top = Math.floor(Math.random() * 900);
+        let left = Math.floor(Math.random() * 900);
+        ratElm.style.left = `${left}px`;
+        ratElm.style.top = `${top}px`;
+
+      }
+
+
+      // start input
+      window.addEventListener("mousedown", e => {
+
+        // LEFT MOUSE BUTTON
+        if (e.button == 0) {
+          selRectStart = { x: e.pageX, y: e.pageY };
+          selRectEnd = { x: e.pageX, y: e.pageY };
+
+          selRectElm.style.left = `${selRectStart.x}px`;
+          selRectElm.style.top = `${selRectStart.y}px`;
+          selRectElm.style.width = "0px";
+          selRectElm.style.height = "0px";
+          selRectElm.style.display = "block";
+        }
+
+        // RIGHT MOUSE BUTTON
+        if (e.button == 2) {
+          target = { x: e.pageX, y: e.pageY };
+          console.log(target);
+
+          for (let i = 0; i < rats.length; i++) {
+            let ratElm = rats[i];
+            if (ratElm.selected == true) {
+              ratElm.moving = true;
+              console.log(ratElm);
+            }
           }
         }
-      }
 
-    });
+      });
 
-    window.addEventListener("mouseup", e => {
+      window.addEventListener("mouseup", e => {
 
-      // LEFT MOUSE BUTTON
-      if (e.button == 0) {
-        selRectElm.style.display = "none";
+        // LEFT MOUSE BUTTON
+        if (e.button == 0) {
+          selRectElm.style.display = "none";
 
-        // figure out who's in the selection area
+          // figure out who's in the selection area
 
-        for (let i = 0; i < rats.length; i++) {
-          let ratElm = rats[i];
+          for (let i = 0; i < rats.length; i++) {
+            let ratElm = rats[i];
 
-          let ratStyle = window.getComputedStyle(ratElm);
-          let ratY = parseInt(ratStyle.top);
-          let ratX = parseInt(ratStyle.left);
+            let ratStyle = window.getComputedStyle(ratElm);
+            let ratY = parseInt(ratStyle.top);
+            let ratX = parseInt(ratStyle.left);
 
-          let rectLeft = selRectStart.x;
-          let rectRight = selRectEnd.x;
-          let rectTop = selRectStart.y;
-          let rectBottom = selRectEnd.y
+            let rectLeft = selRectStart.x;
+            let rectRight = selRectEnd.x;
+            let rectTop = selRectStart.y;
+            let rectBottom = selRectEnd.y
 
-          // acount for if we're selecting left-wise/up-wise
-          if (selRectEnd.x < selRectStart.x) {
-            rectLeft = selRectEnd.x;
-            rectRight = selRectStart.x
-          }
+            // acount for if we're selecting left-wise/up-wise
+            if (selRectEnd.x < selRectStart.x) {
+              rectLeft = selRectEnd.x;
+              rectRight = selRectStart.x
+            }
 
-          if (selRectEnd.y < selRectStart.y) {
-            rectTop = selRectEnd.y;
-            rectBottom = selRectStart.y;
-          }
+            if (selRectEnd.y < selRectStart.y) {
+              rectTop = selRectEnd.y;
+              rectBottom = selRectStart.y;
+            }
 
-          if (rectLeft <= ratX && rectRight >= ratX &&
+            if (rectLeft <= ratX && rectRight >= ratX &&
               rectTop <= ratY && rectBottom >= ratY) {
+              ratElm.style.borderStyle = "solid";
+              ratElm.style.borderWidth = "2px";
+              ratElm.style.borderColor = "aquamarine";
+              ratElm.selected = true;
+              console.log("selected!");
+            } else {
+              ratElm.style.borderStyle = "none";
+              ratElm.selected = false;
+              console.log("un selected!");
+
+            }
+          }
+
+          // also we select whatever rat the mouse is over
+          console.log(e.target);
+          if (e.target.className == "rat") {
+            let ratElm = e.target;
             ratElm.style.borderStyle = "solid";
             ratElm.style.borderWidth = "2px";
             ratElm.style.borderColor = "aquamarine";
             ratElm.selected = true;
-            console.log("selected!");
-          } else {
-            ratElm.style.borderStyle = "none";
-            ratElm.selected = false;
-            console.log("un selected!");
-
           }
         }
 
-        // also we select whatever rat the mouse is over
-        console.log(e.target);
-        if (e.target.className == "rat") {
-          let ratElm = e.target;
-          ratElm.style.borderStyle = "solid";
-          ratElm.style.borderWidth = "2px";
-          ratElm.style.borderColor = "aquamarine";
-          ratElm.selected = true;
+        if (e.button == 2) {
         }
-      }
 
-      if (e.button == 2) {
-      }
+      });
 
-    });
+      window.addEventListener("mousemove", e => {
+        selRectEnd = { x: e.pageX, y: e.pageY };
 
-    window.addEventListener("mousemove", e => {
-	    selRectEnd = {x: e.pageX, y: e.pageY };
+        // draw rectangle
 
-      // draw rectangle
+        // if we drag the mouse to the left/north of where we started, we
+        // we'll get a negative width/height, so we account for that
 
-      // if we drag the mouse to the left/north of where we started, we
-      // we'll get a negative width/height, so we account for that
+        let left = selRectStart.x;
+        let top = selRectStart.y;
 
-      let left = selRectStart.x;
-      let top = selRectStart.y;
+        if (selRectEnd.x < selRectStart.x) {
+          left = selRectEnd.x;
+        }
 
-      if (selRectEnd.x < selRectStart.x) {
-        left = selRectEnd.x;
-      }
+        if (selRectEnd.y < selRectStart.y) {
+          top = selRectEnd.y;
+        }
 
-      if (selRectEnd.y < selRectStart.y) {
-        top = selRectEnd.y;
-      }
+        let width = Math.abs(selRectEnd.x - selRectStart.x);
+        let height = Math.abs(selRectEnd.y - selRectStart.y);
 
-      let width = Math.abs(selRectEnd.x - selRectStart.x);
-      let height = Math.abs(selRectEnd.y - selRectStart.y);
+        selRectElm.style.left = `${left}px`;
+        selRectElm.style.top = `${top}px`;
+        selRectElm.style.width = `${width}px`;
+        selRectElm.style.height = `${height}px`;
 
-      selRectElm.style.left = `${left}px`;
-      selRectElm.style.top = `${top}px`;
-      selRectElm.style.width = `${width}px`;
-      selRectElm.style.height = `${height}px`;
+      });
 
-    });
+      // disable context menu on right click
+      window.addEventListener("contextmenu", e => e.preventDefault());
 
-    // disable context menu on right click
-    window.addEventListener("contextmenu", e => e.preventDefault());
+      window.addEventListener("dragend", e => {
+        dragTarget = { x: e.pageX, y: e.pageY };
+        // console.log(e.pageX);
+        // console.log(e.pageY);
 
-    window.addEventListener("dragend", e => {
-	dragTarget = {x: e.pageX, y: e.pageY };
-	// console.log(e.pageX);
-	// console.log(e.pageY);
-
-    });
+      });
 
 
 
-    window.requestAnimationFrame(tick);
-  }
+      window.requestAnimationFrame(tick);
+    }
 
 
 
-  startGame();
+    startGame();
 
-</script>
+  </script>
 </body>
 
 </html>
