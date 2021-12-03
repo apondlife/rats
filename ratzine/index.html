@@ -5,6 +5,7 @@
     margin: 0px;
     background: url("../ratjam/background.jpg") no-repeat;
     background-size: cover;
+    user-select: none;
     cursor: url('data:image/svg+xml;charset=utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40" height="40" width="40"><text x="0" y="10" font-size="30" dominant-baseline="hanging">🧀</text></svg>'), auto;
   }
 
@@ -14,7 +15,6 @@
 
   #zine-content {
     margin: 20px;
-
   }
 
   #labrat-container {
@@ -28,17 +28,12 @@
     background-color: #ffeeff;
     height: 64px;
 
-
-
     padding-bottom: 10px;
     padding-top: 10px;
     padding: 10px;
     margin-right: 10px;
     margin-top: 350px;
     text-align: center;
-
-
-
   }
 
   #labrat {
@@ -48,13 +43,18 @@
 
   }
 
-  #row2 {
+  .row {
     display: flex;
     margin-top: 20px;
     margin-bottom: 100px;
 
+    border: none;
 
     height: 600px;
+  }
+
+  iframe {
+    border: none;
   }
 
   #poratry {
@@ -65,10 +65,31 @@
   #ratist {
     flex: 1;
   }
+
+  #lovingregret {
+    flex: 1;
+    height: 600px;
+    width: 600px;
+    position: absolute;
+  }
+
+  #ratregret {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    left: 200px;
+    top: 200px;
+  }
+
+  #ratloving {
+    height:  600px;
+    width: 600px;
+    filter: contrast(3.0) brightness(0.5);
+  }
 </style>
 
 <body>
-  <img class="rat" id="rat" width="200">
+  <img class="rat" id="rat" width="200" draggable="false">
 
   <object style="display: none;">
   </object>
@@ -78,10 +99,16 @@
       <div id="labrat-title"> labrat </div>
       <iframe id="labrat" src="../labrat/index.html"></iframe>
     </div>
-    <div id="row2">
+    <div class="row">
       <iframe id="poratry" src="../poratry/index.html"></iframe>
       <img src="/img/ractors.png">
       <iframe id="ratist" src="../ratle/index.html"></iframe>
+    </div>
+    <div class="row">
+      <div id="lovingregret">
+        <iframe id="ratloving" src="../ratloving/Build/index.html"></iframe>
+        <img id="ratregret" src="/img/free-lwo-model-putty-mouse_DHQ.jpg">
+      </div>
     </div>
   </div>
 </body>

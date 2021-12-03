@@ -5,14 +5,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player | rat loving</title>
   </head>
-  <body style="text-align: center">
-    <canvas id="unity-canvas" width=600 height=600 style="width: 600px; height: 600px; background: #231F20"></canvas>
+  <body style="margin: 0; overflow:hidden">
+    <canvas id="unity-canvas" style="width: 600px; height: 600px; background: #231F20"></canvas>
     <script src="Build/Build.loader.js"></script>
     <script>
       createUnityInstance(document.querySelector("#unity-canvas"), {
-        dataUrl: "Build/Build.data.gz",
-        frameworkUrl: "Build/Build.framework.js.gz",
-        codeUrl: "Build/Build.wasm.gz",
+        dataUrl: "Build/Build.data",
+        frameworkUrl: "Build/Build.framework.js",
+        codeUrl: "Build/Build.wasm",
         streamingAssetsUrl: "StreamingAssets",
         companyName: "pondlife",
         productName: "rat loving",
