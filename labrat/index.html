@@ -9,7 +9,8 @@
 <body>
 
 
-  <p>001</p>
+  <button type="button" class="collapsible"><p>001</p></button>
+  <div class="content">
 
   <!--rat tail go bye-->
 
@@ -40,31 +41,40 @@
 
   <img src="../labrat/images/snoopy.jpeg">
 
-  <p>002</p>
+  </div>
+
+  <button class="collapsible"><p>002</p></button>
 
   <!--i was once a common rat, but you made me fancy-->
 
-  <p>003</p>
+  <button class="collapsible"><p>003</p></button>
 
   <!--my kin comes in all shapes and sizes-->
 
-  <p>004</p>
+  <button class="collapsible"><p>004</p></button>
 
   <!--i saw a rat and we looked at each other. we were not the same.-->
 
-  <p>005</p>
+  <button class="collapsible"><p>005</p></button>
 
-  <p>006</p>
-
-  <p>007</p>
-
-  <p>008</p>
-
-  <p>009</p>
-
-  <p>010</p>
+<p></p>
 
   <script>
+    var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+
     function destroyTail(event) {
       event.target.style.visibility = "hidden";
       document.getElementById('tail-tale').style.visibility = 'visible'
