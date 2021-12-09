@@ -65,7 +65,7 @@
 
 <p></p>
 
-  <script>
+  <script type="module">
        var contents = document.getElementsByClassName("content");
        console.log(contents);
 
@@ -94,6 +94,62 @@ for (i = 0; i < collapsibles.length; i++) {
       document.getElementById('tail-tale').style.visibility = 'visible'
       //event.target.style.display="none";
     }
+
+
+    import * as THREE from 'https://cdn.skypack.dev/three@0.135.0';
+    import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.135.0/examples/jsm/loaders/GLTFLoader.js';
+
+    import { OrbitControls } from 'https://cdn.skypack.dev/three@0.135.0/examples/jsm/controls/OrbitControls.js';
+
+
+
+    var scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+
+    const renderer = new THREE.WebGLRenderer({alpha: true});
+    renderer.setSize( window.innerWidth, window.innerHeight );
+    document.body.appendChild( renderer.domElement );
+
+
+
+
+
+    // const loader = new THREE.ObjectLoader();
+    // loader.load('scene.json', function(object) {
+    //   console.log(object);
+    //   scene = scene;
+    // });
+
+    const gltfloader = new GLTFLoader();
+
+    gltfloader.load( 'clicktherat/tuxedorat.glb', function ( gltf ) {
+
+	console.log('loaded object uwu');
+	scene.add( gltf.scene );
+
+}, undefined, function ( error ) {
+
+	console.error( error );
+
+} );
+    
+    const light = new THREE.AmbientLight( 
+      0x404040,
+      6); // soft white light
+    // scene.add( light );
+    camera.position.z = 1;
+
+    const controls = new OrbitControls (camera, renderer.domElement);
+
+    function animate() {
+      controls.update();
+      requestAnimationFrame( animate );
+      renderer.render( scene, camera );
+    }
+    
+    animate();
+
+    
   </script>
 
   <iframe style="border: double magenta 20px" src="/ratjam/index.html"></iframe>
