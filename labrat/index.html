@@ -9,8 +9,24 @@
 <body>
 
 
-  <button type="button" class="collapsible"><p>001</p></button>
-  <div class="content">
+  <button type="button" class="collapsible"><p>001</p></button> 
+
+  <button class="collapsible"><p>002</p></button>
+
+  <!--i was once a common rat, but you made me fancy-->
+  
+
+  <button class="collapsible"><p>003</p></button>
+
+  <!--my kin comes in all shapes and sizes-->
+
+  <button class="collapsible"><p>004</p></button>
+
+  <!--i saw a rat and we looked at each other. we were not the same.-->
+
+  <button class="collapsible"><p>005</p></button>
+
+  <div class="content" id="001">
 
   <!--rat tail go bye-->
 
@@ -43,32 +59,28 @@
 
   </div>
 
-  <button class="collapsible"><p>002</p></button>
-
-  <!--i was once a common rat, but you made me fancy-->
-
-  
-
-  <button class="collapsible"><p>003</p></button>
-
-  <!--my kin comes in all shapes and sizes-->
-
-  <button class="collapsible"><p>004</p></button>
-
-  <!--i saw a rat and we looked at each other. we were not the same.-->
-
-  <button class="collapsible"><p>005</p></button>
+  <div class="content" id="002">
+  <p>asdfkoadskfoaewfokawfoaewkfwaeofkaewoifaewifjoawejfiaewfoaewjfibaewiofjiawefiuaewhfiewahfiuawehfioaewhf</p>
+  </div>
 
 <p></p>
 
   <script>
-    var coll = document.getElementsByClassName("collapsible");
+       var contents = document.getElementsByClassName("content");
+       console.log(contents);
+
+      var collapsibles = document.getElementsByClassName("collapsible");
 var i;
 
-for (i = 0; i < coll.length; i++) {
-  coll[i].addEventListener("click", function() {
+for (i = 0; i < collapsibles.length; i++) {
+  collapsibles[i].addEventListener("click", function() {
     this.classList.toggle("active");
-    var content = this.nextElementSibling;
+    //console.log(this.firstChild.innerHTML);
+    var content = document.getElementById(this.firstChild.innerHTML);
+    for (var j = 0; j < contents.length; j++){
+      console.log(contents[j]);
+      contents[j].style.display ="none"; 
+    }
     if (content.style.display === "block") {
       content.style.display = "none";
     } else {
