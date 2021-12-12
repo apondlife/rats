@@ -1,39 +1,49 @@
 /* Style the button that is used to open and close the collapsible content */
-.collapsible {
-    background-color: rgb(239, 243, 28);
-    color: rgb(184, 61, 39);
-    cursor: pointer;
-    padding: 18px;
-    width: 5%;
-    border: none;
-    text-align: left;
-    outline: none;
-    font-size: 15px;
-  }
-  
-  /* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
-  .active, .collapsible:hover {
-    background-color: rgb(255, 238, 255);
-  }
-  
-  /* Style the collapsible content. Note: hidden by default */
-  .content {
-    padding: 0 18px;
-    display: none;
-    overflow: hidden;
-    background-color: #f1f1f1;
-  }
-  
+.tab-button {
+  background-color: rgb(239, 243, 28);
+  color: rgb(184, 61, 39);
+  cursor: pointer;
+  padding: 18px;
+  width: 5%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.tab-button.active,
+.tab-button:hover {
+  background-color: rgb(255, 238, 255);
+}
+
+/* Style the tab content. Note: hidden by default */
+.tab-content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* style the tuxedo-rat tab */
+.tuxedo-rat-display.active {
+  display: flex;
+}
+
 body {
-    background-color: #ffeeff;
+  background-color: #ffeeff;
 }
 
-.rat{
-    position: relative;
+.rat {
+  position: relative;
 }
 
-.ratTail{
-    position: absolute;
-    cursor: grab;
-    pointer-events: visible;
+.ratTail {
+  position: absolute;
+  cursor: grab;
+  pointer-events: visible;
 }

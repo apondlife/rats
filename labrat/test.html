@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <link rel="stylesheet" href="./main.css" />
+  </head>
+
+  <body>
+    <button type="button" class="collapsible"><p>001</p></button>
+
+    <button class="collapsible"><p>002</p></button>
+
+    <!--i was once a common rat, but you made me fancy-->
+
+    <button class="collapsible"><p>003</p></button>
+
+    <!--my kin comes in all shapes and sizes-->
+
+    <button class="collapsible"><p>004</p></button>
+
+    <!--i saw a rat and we looked at each other. we were not the same.-->
+
+    <button class="collapsible"><p>005</p></button>
+
+    <div class="content" id="001">
+      <!--rat tail go bye-->
+
+      <div class="rat">
+        <img
+          id="rat-tail"
+          src="../labrat/images/labrat1_wo_body.png"
+          class="ratTail"
+          draggable="true"
+          ondragend="destroyTail(event)"
+        />
+
+        <img id="rat-bod" src="../labrat/images/labrat1_wo_tail.png" />
+      </div>
+
+      <p id="tail-tale" style="visibility: hidden">
+        a rat without it's tail is just a hamster
+      </p>
+
+      HAMSTER: hey i'm not a freak. we have tails.
+      <p>look.</p>
+
+      EXHIBIT A:
+      <img src="../labrat/images/hamster-butt.jpg" />
+
+      EXHIBIT B:
+      <img src="../labrat/images/40-5e25b34aa302c__700.jpg" />
+
+      EXHIBIT C: --alright, that's enough.
+
+      <p>no,</p>
+
+      <p>a rat without it's tail is just a tailess rat</p>
+
+      <img src="../labrat/images/snoopy.jpeg" />
+    </div>
+
+    <div class="content" id="002">
+      <p>
+        asdfkoadskfoaewfokawfoaewkfwaeofkaewoifaewifjoawejfiaewfoaewjfibaewiofjiawefiuaewhfiewahfiuawehfioaewhf
+      </p>
+    </div>
+
+    <div class="content" id="003" onclick="changeRemy()">
+      <img id="remy001" src="./images/remy/0.png" style="width: 100px" />
+      <!-- all images should be pngs tho -->
+      <script>
+        var currentRemy = 0;
+        var totalRemys = 9;
+        window.changeRemy = function () {
+          var remyImg = document.getElementById("remy001");
+          currentRemy = (currentRemy + 1) % totalRemys; // this makes it so that it goes 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7
+          remyImg.src = "./images/remy/" + currentRemy + ".png"; // write the name of the file
+        };
+      </script>
+    </div>
+
+    <p></p>
+
+    <script type="module">
+      var contents = document.getElementsByClassName("content");
+      // console.log(contents);
+
+      var collapsibles = document.getElementsByClassName("collapsible");
+      var i;
+
+      for (i = 0; i < collapsibles.length; i++) {
+        collapsibles[i].addEventListener("click", function () {
+          this.classList.toggle("active");
+          //console.log(this.firstChild.innerHTML);
+          var content = document.getElementById(this.firstChild.innerHTML);
+          for (var j = 0; j < contents.length; j++) {
+            // console.log(contents[j]);
+            contents[j].style.display = "none";
+          }
+          if (content.style.display === "block") {
+            content.style.display = "none";
+          } else {
+            content.style.display = "block";
+          }
+        });
+      }
+
+      function destroyTail(event) {
+        event.target.style.visibility = "hidden";
+        document.getElementById("tail-tale").style.visibility = "visible";
+        //event.target.style.display="none";
+      }
+    </script>
+
+    <script type="module">
+      import * as THREE from "https://cdn.skypack.dev/three@0.135.0";
+      import { GLTFLoader } from "https://cdn.skypack.dev/three@0.135.0/examples/jsm/loaders/GLTFLoader.js";
+      import { OrbitControls } from "https://cdn.skypack.dev/three@0.135.0/examples/jsm/controls/OrbitControls.js";
+
+      var scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(
+        75,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
+      );
+
+      const renderer = new THREE.WebGLRenderer({ alpha: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
+
+      // const loader = new THREE.ObjectLoader();
+      // loader.load('scene.json', function(object) {
+      //   console.log(object);
+      //   scene = scene;
+      // });
+
+      const gltfloader = new GLTFLoader();
+
+      gltfloader.load(
+        "clicktherat/tuxedorat.glb",
+        function (gltf) {
+          // console.log("loaded object uwu");
+          scene.add(gltf.scene);
+        },
+        undefined,
+        function (error) {
+          console.error(error);
+        }
+      );
+
+      const light = new THREE.AmbientLight(0x404040, 6); // soft white light
+      // scene.add( light );
+      camera.position.z = 1;
+
+      const controls = new OrbitControls(camera, renderer.domElement);
+
+      function animate() {
+        controls.update();
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+      }
+
+      animate();
+    </script>
+
+    <iframe
+      style="border: double magenta 20px"
+      src="/ratjam/index.html"
+    ></iframe>
+    <iframe
+      style="border: none"
+      src="https://en.wikipedia.org/wiki/Rat"
+    ></iframe>
+    <iframe
+      width="420"
+      height="69"
+      style="border: none"
+      src="https://www.youtube.com/embed/d-84UJpYFRM"
+      frameborder="0"
+      allowfullscreen
+    ></iframe>
+  </body>
+</html>
