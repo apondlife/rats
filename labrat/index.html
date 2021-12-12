@@ -22,7 +22,7 @@
 
     <button class="tab-button"><p>005</p></button>
 
-    <div class="tab-content active" id="001">
+    <div class="tab-content active" id="tab-001">
       <!--rat tail go bye-->
       <div class="rat">
         <img
@@ -36,36 +36,55 @@
         <img id="rat-bod" src="../labrat/images/labrat1_wo_tail.png" />
       </div>
 
-      <p id="tail-tale" style="visibility: hidden">
+      <p id="tail-tale" class="tail-hidden">
         a rat without it's tail is just a hamster
       </p>
 
-      HAMSTER: hey i'm not a freak. we have tails.
-      <p>look.</p>
+      <p class="tail-hidden">
+        HAMSTER: hey i'm not a freak. we have tails.
+      </p>
+      
+      <p class="tail-hidden">
+        look.
+      </p>
 
-      EXHIBIT A:
-      <img src="../labrat/images/hamster-butt.jpg" />
+      <p class="tail-hidden">
+        EXHIBIT A:
+        <img src="../labrat/images/hamster-butt.jpg" />
+      </p>
 
-      EXHIBIT B:
-      <img src="../labrat/images/40-5e25b34aa302c__700.jpg" />
+      <p class="tail-hidden">
+        EXHIBIT B:
+        <img src="../labrat/images/40-5e25b34aa302c__700.jpg" />
+      </p>
 
-      EXHIBIT C: --alright, that's enough.
+      <p class="tail-hidden">
+        EXHIBIT C: --alright, that's enough.
+      </p>
+      
+      <p class="tail-hidden">
+        no,
+      </p>
 
-      <p>no,</p>
+      <p class="tail-hidden">
+        a rat without it's tail is just a tailess rat
+      </p>
 
-      <p>a rat without it's tail is just a tailess rat</p>
-
-      <img src="../labrat/images/snoopy.jpeg" />
+      <img 
+        class="tail-hidden" 
+        src="../labrat/images/snoopy.jpeg"
+      >
     </div>
 
-    <div class="tab-content" id="002">
+    <div class="tab-content" id="tab-002">
       <p>
-        asdfkoadskfoaewfokawfoaewkfwaeofkaewoifaewifjoawejfiaewfoaewjfibaewiofjiawefiuaewhfiewahfiuawehfioaewhf
+        <img src="../labrat/images/notearzleft2cry.gif">
       </p>
     </div>
 
-    <div class="tab-content" id="003" onclick="changeRemy()">
-      <img id="remy001" src="./images/remy/0.png" style="width: 100px" />
+    <div class="tab-content" id="tab-003" onclick="changeRemy()">
+      <img id="remy001" src="./images/remy/0.png" style="width: auto; height:800px; object-fit: cover;" />
+      <p>click for alt remy</p>
       <!-- all images should be pngs tho -->
       <script>
         var currentRemy = 0;
@@ -78,7 +97,7 @@
       </script>
     </div>
 
-    <div class="tab-content tuxedo-rat-display" id="004">
+    <div class="tab-content tuxedo-rat-display" id="tab-004">
       <div id="tuxedo-rat">
       </div>
       <div>
@@ -86,8 +105,9 @@
       </div>
     </div>
 
-    <div class="tab-content" id="005">
-      <img id="rat-bod" src="../labrat/images/spotthedifferentrat.png" width="420" height="469">
+    <div class="tab-content" id="tab-005">
+      <img src="../labrat/images/spotthedifferentrat.png" width="420" height="469">
+      <p>spot the different rat</p>
     </div>
 
     <script>
@@ -112,7 +132,7 @@
 
         for (var j = 0; j < tabContents.length; j++) {
           var tabContent = tabContents[j]
-          var tabId = tabContent.id
+          var tabId = tabContent.id.slice(4)
           var isClicked = tabId == clickedId
           tabContent.classList.toggle("active", isClicked)
         } 
@@ -120,8 +140,11 @@
 
       function destroyTail(event) {
         event.target.style.visibility = "hidden";
-        document.getElementById("tail-tale").style.visibility = "visible";
-        //event.target.style.display="none";
+
+        var hiddenElements = Array.from(document.getElementsByClassName("tail-hidden"))
+        for (var element of hiddenElements) {
+          element.classList.toggle("tail-hidden", false)
+        }
       }
     </script>
 
