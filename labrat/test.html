@@ -6,24 +6,25 @@
   </head>
 
   <body>
-    <button class="tab-button active"><p>001</p></button>
+    <button type="button" class="collapsible"><p>001</p></button>
 
-    <button class="tab-button"><p>002</p></button>
+    <button class="collapsible"><p>002</p></button>
 
     <!--i was once a common rat, but you made me fancy-->
 
-    <button class="tab-button"><p>003</p></button>
+    <button class="collapsible"><p>003</p></button>
 
     <!--my kin comes in all shapes and sizes-->
 
-    <button class="tab-button"><p>004</p></button>
+    <button class="collapsible"><p>004</p></button>
 
     <!--i saw a rat and we looked at each other. we were not the same.-->
 
-    <button class="tab-button"><p>005</p></button>
+    <button class="collapsible"><p>005</p></button>
 
-    <div class="tab-content active" id="001">
+    <div class="content" id="001">
       <!--rat tail go bye-->
+
       <div class="rat">
         <img
           id="rat-tail"
@@ -58,13 +59,13 @@
       <img src="../labrat/images/snoopy.jpeg" />
     </div>
 
-    <div class="tab-content" id="002">
+    <div class="content" id="002">
       <p>
         asdfkoadskfoaewfokawfoaewkfwaeofkaewoifaewifjoawejfiaewfoaewjfibaewiofjiawefiuaewhfiewahfiuawehfioaewhf
       </p>
     </div>
 
-    <div class="tab-content" id="003" onclick="changeRemy()">
+    <div class="content" id="003" onclick="changeRemy()">
       <img id="remy001" src="./images/remy/0.png" style="width: 100px" />
       <!-- all images should be pngs tho -->
       <script>
@@ -78,43 +79,30 @@
       </script>
     </div>
 
-    <div class="tab-content tuxedo-rat-display" id="004">
-      <div id="tuxedo-rat">
-      </div>
-      <div>
-        this is the ratticus fancifus
-      </div>
-    </div>
+    <p></p>
 
-    <div class="tab-content" id="005">
-    </div>
+    <script type="module">
+      var contents = document.getElementsByClassName("content");
+      // console.log(contents);
 
-    <script>
-      var tabContents = document.getElementsByClassName("tab-content");
-      var tabButtons = document.getElementsByClassName("tab-button");
+      var collapsibles = document.getElementsByClassName("collapsible");
+      var i;
 
-      for (var i = 0; i < tabButtons.length; i++) {
-        var currentButton = tabButtons[i]
-        currentButton.addEventListener("click", onTabButtonClick);
-      }
-
-      function onTabButtonClick(event) {
-        var clickedButton = event.target
-        var clickedId = clickedButton.innerText
-
-        for (var i = 0; i < tabButtons.length; i++) {
-          var tabButton = tabButtons[i]
-          var tabId = tabButton.innerText
-          var isClicked = tabId == clickedId
-          tabButton.classList.toggle("active", isClicked)
-        }
-
-        for (var j = 0; j < tabContents.length; j++) {
-          var tabContent = tabContents[j]
-          var tabId = tabContent.id
-          var isClicked = tabId == clickedId
-          tabContent.classList.toggle("active", isClicked)
-        } 
+      for (i = 0; i < collapsibles.length; i++) {
+        collapsibles[i].addEventListener("click", function () {
+          this.classList.toggle("active");
+          //console.log(this.firstChild.innerHTML);
+          var content = document.getElementById(this.firstChild.innerHTML);
+          for (var j = 0; j < contents.length; j++) {
+            // console.log(contents[j]);
+            contents[j].style.display = "none";
+          }
+          if (content.style.display === "block") {
+            content.style.display = "none";
+          } else {
+            content.style.display = "block";
+          }
+        });
       }
 
       function destroyTail(event) {
@@ -138,10 +126,8 @@
       );
 
       const renderer = new THREE.WebGLRenderer({ alpha: true });
-      renderer.setSize(690, 420);
-
-      const tuxedoRat = document.getElementById("tuxedo-rat")
-      tuxedoRat.appendChild(renderer.domElement);
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
 
       // const loader = new THREE.ObjectLoader();
       // loader.load('scene.json', function(object) {
@@ -154,7 +140,7 @@
       gltfloader.load(
         "clicktherat/tuxedorat.glb",
         function (gltf) {
-          console.log("loaded object uwu");
+          // console.log("loaded object uwu");
           scene.add(gltf.scene);
         },
         undefined,
@@ -164,7 +150,7 @@
       );
 
       const light = new THREE.AmbientLight(0x404040, 6); // soft white light
-      scene.add( light );
+      // scene.add( light );
       camera.position.z = 1;
 
       const controls = new OrbitControls(camera, renderer.domElement);
