@@ -13,6 +13,8 @@ namespace StarterAssets
 		public bool jump;
 		public bool sprint;
 
+		public bool click;
+
 		[Header("Movement Settings")]
 		public bool analogMovement;
 
@@ -44,6 +46,11 @@ namespace StarterAssets
 		public void OnSprint(InputValue value)
 		{
 			SprintInput(value.isPressed);
+		}
+
+		public void OnClick(InputValue value)
+		{
+			click = value.isPressed;
 		}
 #else
 	// old input sys if we do decide to have it (most likely wont)...

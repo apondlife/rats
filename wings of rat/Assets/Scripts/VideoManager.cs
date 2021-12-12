@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 using System.IO;
+using StarterAssets;
 
 public class VideoManager : MonoBehaviour
 {
@@ -22,12 +23,10 @@ public class VideoManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!vp.isPlaying && !alreadyPlayed) {
+        if (!vp.isPlaying) {
             vp.Play();
-            alreadyPlayed = true;
         }
     }
-
     // public void Play()
     // {
     // 	vp.Stop(); //frame = 0;

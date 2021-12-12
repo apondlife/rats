@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>wings of rat</title>
+    <style>
+      body {
+        background: #000;
+        margin: 0;
+        text-align: center;
+      }
+      canvas {
+        width: 100vw; 
+        height: calc(9/16 * 100vw);
+        max-height: 100vh;
+        max-width: calc(16/9 * 100vh);
+
+        margin: auto;
+        position: absolute;
+        top: 0; bottom: 0; left: 0; right: 0;
+      }
+    </style>  
+  </head>
+  <body>
+    <canvas id="unity-canvas" width=2880 height=1620></canvas>
+    <script src="Build/rat.loader.js"></script>
+    <script>
+      createUnityInstance(document.querySelector("#unity-canvas"), {
+        dataUrl: "Build/rat.data",
+        frameworkUrl: "Build/rat.framework.js",
+        codeUrl: "Build/rat.wasm",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "pondlife",
+        productName: "wings of rat",
+        productVersion: "0.1",
+        matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
+        // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
+      });
+    </script>
+  </body>
+</html>
