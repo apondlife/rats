@@ -1,161 +1,222 @@
 <!DOCTYPE html>
 
 <html>
+  <head>
+    <link rel="stylesheet" href="./main.css" />
+  </head>
 
-<head>
-  <link rel="stylesheet" href="./main.css">
-</head>
+  <body>
+    <button class="tab-button active"><p>001</p></button>
 
-<body>
+    <button class="tab-button"><p>002</p></button>
 
+    <!--i was once a common rat, but you made me fancy-->
 
-  <button type="button" class="collapsible"><p>001</p></button> 
+    <button class="tab-button"><p>003</p></button>
 
-  <button class="collapsible"><p>002</p></button>
+    <!--my kin comes in all shapes and sizes-->
 
-  <!--i was once a common rat, but you made me fancy-->
-  
+    <button class="tab-button"><p>004</p></button>
 
-  <button class="collapsible"><p>003</p></button>
+    <!--i saw a rat and we looked at each other. we were not the same.-->
 
-  <!--my kin comes in all shapes and sizes-->
+    <button class="tab-button"><p>005</p></button>
 
-  <button class="collapsible"><p>004</p></button>
+    <div class="tab-content active" id="tab-001">
+      <!--rat tail go bye-->
+      <div class="rat">
+        <img
+          id="rat-tail"
+          src="../labrat/images/labrat1_wo_body.png"
+          class="ratTail"
+          draggable="true"
+          ondragend="destroyTail(event)"
+        />
 
-  <!--i saw a rat and we looked at each other. we were not the same.-->
+        <img id="rat-bod" src="../labrat/images/labrat1_wo_tail.png" />
+      </div>
 
-  <button class="collapsible"><p>005</p></button>
+      <p id="tail-tale" class="tail-hidden">
+        a rat without it's tail is just a hamster
+      </p>
 
-  <div class="content" id="001">
+      <p class="tail-hidden">
+        HAMSTER: hey i'm not a freak. we have tails.
+      </p>
+      
+      <p class="tail-hidden">
+        look.
+      </p>
 
-  <!--rat tail go bye-->
+      <p class="tail-hidden">
+        EXHIBIT A:
+        <img src="../labrat/images/hamster-butt.jpg" />
+      </p>
 
-  <div class="rat">
+      <p class="tail-hidden">
+        EXHIBIT B:
+        <img src="../labrat/images/40-5e25b34aa302c__700.jpg" />
+      </p>
 
-    <img id="rat-tail" src="../labrat/images/labrat1_wo_body.png" class="ratTail" draggable="true" ondragend="destroyTail(event)">
+      <p class="tail-hidden">
+        EXHIBIT C: --alright, that's enough.
+      </p>
+      
+      <p class="tail-hidden">
+        no,
+      </p>
 
-    <img id="rat-bod" src="../labrat/images/labrat1_wo_tail.png">
+      <p class="tail-hidden">
+        a rat without it's tail is just a tailess rat
+      </p>
 
-  </div>
+      <img 
+        class="tail-hidden" 
+        src="../labrat/images/snoopy.jpeg"
+      >
+    </div>
 
-  <p id="tail-tale" style="visibility: hidden;">a rat without it's tail is just a hamster</p>
+    <div class="tab-content" id="tab-002">
+      <p>
+        <img src="../labrat/images/notearzleft2cry.gif">
+      </p>
+    </div>
 
-  HAMSTER: hey i'm not a freak. we have tails.
-  <p>look.</p>
+    <div class="tab-content" id="tab-003" onclick="changeRemy()">
+      <img id="remy001" src="./images/remy/0.png" style="width: auto; height:800px; object-fit: cover;" />
+      <p>click for alt remy</p>
+      <!-- all images should be pngs tho -->
+      <script>
+        var currentRemy = 0;
+        var totalRemys = 9;
+        window.changeRemy = function () {
+          var remyImg = document.getElementById("remy001");
+          currentRemy = (currentRemy + 1) % totalRemys; // this makes it so that it goes 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 1, 2, 3, 4, 5, 6, 7
+          remyImg.src = "./images/remy/" + currentRemy + ".png"; // write the name of the file
+        };
+      </script>
+    </div>
 
-  EXHIBIT A:
-  <img src="../labrat/images/hamster-butt.jpg">
+    <div class="tab-content tuxedo-rat-display" id="tab-004">
+      <div id="tuxedo-rat">
+      </div>
+      <div>
+        this is the ratticus fancifus
+      </div>
+    </div>
 
-  EXHIBIT B:
-  <img src="../labrat/images/40-5e25b34aa302c__700.jpg">
+    <div class="tab-content" id="tab-005">
+      <img src="../labrat/images/spotthedifferentrat.png" width="420" height="469">
+      <p>spot the different rat</p>
+    </div>
 
-  EXHIBIT C: --alright, that's enough.
+    <script>
+      var tabContents = document.getElementsByClassName("tab-content");
+      var tabButtons = document.getElementsByClassName("tab-button");
 
-  <p>no,</p>
+      for (var i = 0; i < tabButtons.length; i++) {
+        var currentButton = tabButtons[i]
+        currentButton.addEventListener("click", onTabButtonClick);
+      }
 
-  <p>a rat without it's tail is just a tailess rat</p>
+      function onTabButtonClick(event) {
+        var clickedButton = event.target
+        var clickedId = clickedButton.innerText
 
-  <img src="../labrat/images/snoopy.jpeg">
+        for (var i = 0; i < tabButtons.length; i++) {
+          var tabButton = tabButtons[i]
+          var tabId = tabButton.innerText
+          var isClicked = tabId == clickedId
+          tabButton.classList.toggle("active", isClicked)
+        }
 
-  </div>
+        for (var j = 0; j < tabContents.length; j++) {
+          var tabContent = tabContents[j]
+          var tabId = tabContent.id.slice(4)
+          var isClicked = tabId == clickedId
+          tabContent.classList.toggle("active", isClicked)
+        } 
+      }
 
-  <div class="content" id="002">
-  <p>asdfkoadskfoaewfokawfoaewkfwaeofkaewoifaewifjoawejfiaewfoaewjfibaewiofjiawefiuaewhfiewahfiuawehfioaewhf</p>
-  </div>
+      function destroyTail(event) {
+        event.target.style.visibility = "hidden";
 
-<p></p>
+        var hiddenElements = Array.from(document.getElementsByClassName("tail-hidden"))
+        for (var element of hiddenElements) {
+          element.classList.toggle("tail-hidden", false)
+        }
+      }
+    </script>
 
-  <script type="module">
-       var contents = document.getElementsByClassName("content");
-       console.log(contents);
+    <script type="module">
+      import * as THREE from "https://cdn.skypack.dev/three@0.135.0";
+      import { GLTFLoader } from "https://cdn.skypack.dev/three@0.135.0/examples/jsm/loaders/GLTFLoader.js";
+      import { OrbitControls } from "https://cdn.skypack.dev/three@0.135.0/examples/jsm/controls/OrbitControls.js";
 
-      var collapsibles = document.getElementsByClassName("collapsible");
-var i;
+      var scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(
+        75,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
+      );
 
-for (i = 0; i < collapsibles.length; i++) {
-  collapsibles[i].addEventListener("click", function() {
-    this.classList.toggle("active");
-    //console.log(this.firstChild.innerHTML);
-    var content = document.getElementById(this.firstChild.innerHTML);
-    for (var j = 0; j < contents.length; j++){
-      console.log(contents[j]);
-      contents[j].style.display ="none"; 
-    }
-    if (content.style.display === "block") {
-      content.style.display = "none";
-    } else {
-      content.style.display = "block";
-    }
-  });
-}
+      const renderer = new THREE.WebGLRenderer({ alpha: true });
+      renderer.setSize(690, 420);
 
-    function destroyTail(event) {
-      event.target.style.visibility = "hidden";
-      document.getElementById('tail-tale').style.visibility = 'visible'
-      //event.target.style.display="none";
-    }
+      const tuxedoRat = document.getElementById("tuxedo-rat")
+      tuxedoRat.appendChild(renderer.domElement);
 
+      // const loader = new THREE.ObjectLoader();
+      // loader.load('scene.json', function(object) {
+      //   console.log(object);
+      //   scene = scene;
+      // });
 
-    import * as THREE from 'https://cdn.skypack.dev/three@0.135.0';
-    import { GLTFLoader } from 'https://cdn.skypack.dev/three@0.135.0/examples/jsm/loaders/GLTFLoader.js';
+      const gltfloader = new GLTFLoader();
 
-    import { OrbitControls } from 'https://cdn.skypack.dev/three@0.135.0/examples/jsm/controls/OrbitControls.js';
+      gltfloader.load(
+        "clicktherat/tuxedorat.glb",
+        function (gltf) {
+          console.log("loaded object uwu");
+          scene.add(gltf.scene);
+        },
+        undefined,
+        function (error) {
+          console.error(error);
+        }
+      );
 
+      const light = new THREE.AmbientLight(0x404040, 6); // soft white light
+      scene.add( light );
+      camera.position.z = 1;
 
+      const controls = new OrbitControls(camera, renderer.domElement);
 
-    var scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+      function animate() {
+        controls.update();
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+      }
 
-    const renderer = new THREE.WebGLRenderer({alpha: true});
-    renderer.setSize( window.innerWidth, window.innerHeight );
-    document.body.appendChild( renderer.domElement );
+      animate();
+    </script>
 
-
-
-
-
-    // const loader = new THREE.ObjectLoader();
-    // loader.load('scene.json', function(object) {
-    //   console.log(object);
-    //   scene = scene;
-    // });
-
-    const gltfloader = new GLTFLoader();
-
-    gltfloader.load( 'clicktherat/tuxedorat.glb', function ( gltf ) {
-
-	console.log('loaded object uwu');
-	scene.add( gltf.scene );
-
-}, undefined, function ( error ) {
-
-	console.error( error );
-
-} );
-    
-    const light = new THREE.AmbientLight( 
-      0x404040,
-      6); // soft white light
-    // scene.add( light );
-    camera.position.z = 1;
-
-    const controls = new OrbitControls (camera, renderer.domElement);
-
-    function animate() {
-      controls.update();
-      requestAnimationFrame( animate );
-      renderer.render( scene, camera );
-    }
-    
-    animate();
-
-    
-  </script>
-
-  <iframe style="border: double magenta 20px" src="/ratjam/index.html"></iframe>
-  <iframe style="border: none;" src="https://en.wikipedia.org/wiki/Rat"></iframe>
-  <iframe width="420" height="69" style="border: none;" src="https://www.youtube.com/embed/d-84UJpYFRM" frameborder="0" allowfullscreen></iframe>
-
-</body>
-
+    <iframe
+      style="border: double magenta 20px"
+      src="/ratjam/index.html"
+    ></iframe>
+    <iframe
+      style="border: none"
+      src="https://en.wikipedia.org/wiki/Rat"
+    ></iframe>
+    <iframe
+      width="420"
+      height="69"
+      style="border: none"
+      src="https://www.youtube.com/embed/d-84UJpYFRM"
+      frameborder="0"
+      allowfullscreen
+    ></iframe>
+  </body>
 </html>

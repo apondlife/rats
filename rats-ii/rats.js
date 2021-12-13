@@ -5,6 +5,27 @@ function main() {
   game.start()
 }
 
+class Sprite {
+  constructor(elementId) {
+    this.img = document.getElementById(elementId)
+    const ox = this.img.getAttribute("ox") || 0
+    const oy = this.img.getAttribute("oy") || 0
+    this.baseSize = new Vector(this.img.width, this.img.height)
+    this.offset = new Vector(
+      parseFloat(ox), parseFloat(oy)
+    )
+  }
+
+  draw(ctx, pos, size) {
+    ctx.drawImage(
+      this.img,
+      pos.x - this.offset.x * size.x / this.baseSize.x,
+      pos.y - this.offset.y * size.y / this.baseSize.y,
+      size.x,
+      size.y)
+  }
+}
+
 class Rat {
   // members
   // desired position
@@ -47,10 +68,10 @@ class Game {
     // get sprites
     this.sprites = {
       rat: [
-        document.getElementById("rat-sprite-0"),
-        document.getElementById("rat-sprite-1"),
+        new Sprite("rat-sprite-0"),
+        new Sprite("rat-sprite-1"),
       ],
-      background: document.getElementById("background"),
+      background: new Sprite("background"),
     }
   }
 
@@ -133,22 +154,27 @@ class Game {
     });
 
     $el.addEventListener("mousemove", e => {
-      const target = getMouseVector(e)
+      const mousePos = getMouseVector(e)
       if(mouse.leftButton) {
-        this.rats.push(new Rat(target))
-
         // make selection work in any direction
-        if(target.x <= this.selection.xmin) {
-          this.selection.xmin = target.x
+        if(mousePos.x <= this.selection.xmin) {
+          this.selection.xmin = mousePos.x
         } else {
-          this.selection.xmax = target.x
+          this.selection.xmax = mousePos.x
         }
 
-        if(target.y <= this.selection.ymin) {
-          this.selection.ymin = target.y;
+        if(mousePos.y <= this.selection.ymin) {
+          this.selection.ymin = mousePos.y;
         } else {
-          this.selection.ymax = target.y;
+          this.selection.ymax = mousePos.y;
         }
+
+        const randomPos = new Vector(
+          this.selection.xmin + Math.random() * (this.selection.xmax - this.selection.xmin),
+          this.selection.ymin + Math.random() * (this.selection.ymax - this.selection.ymin)
+        )
+
+        this.rats.push(new Rat(randomPos))
       }
     });
   }
@@ -175,7 +201,7 @@ class Game {
 
     // draw bg
     ctx.fillStyle = "green"
-    ctx.drawImage(this.sprites.background, 0, 0, $el.width * 2, $el.height * 2)
+    this.sprites.background.draw(ctx, new Vector(0, 0), new Vector($el.width * 2, $el.height * 2))
 
     // draw selection box
     if (this.selection != null) {
@@ -195,14 +221,14 @@ class Game {
     }
 
     // draw rats
-    const sprite = this.sprites.rat
-    const frame = Math.floor((this.time / 100.0) % sprite.length)
+    const spriteSheet = this.sprites.rat
+    const frame = Math.floor((this.time / 100.0) % spriteSheet.length)
     for(const rat of this.rats) {
-      let img = sprite[frame]
+      let sprite = spriteSheet[frame]
       if(!rat.selected) {
-        img = sprite[0]
+        sprite = spriteSheet[0]
       }
-      ctx.drawImage(img, rat.pos.x, rat.pos.y, rat.size.x, rat.size.y)
+      sprite.draw(ctx, rat.pos, rat.size)
     }
   }
 }
