@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>Unity WebGL Player | rat loving</title>
+  </head>
+  <body style="margin: 0;">
+    <canvas id="unity-canvas" width=512 height=512 style="width: 512px; height: 512px; background: #231F20"></canvas>
+    <script src="Build/princess.loader.js"></script>
+    <script>
+      createUnityInstance(document.querySelector("#unity-canvas"), {
+        dataUrl: "Build/princess.data",
+        frameworkUrl: "Build/princess.framework.js",
+        codeUrl: "Build/princess.wasm",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "pondlife",
+        productName: "rat loving",
+        productVersion: "0.1",
+        // matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
+        // devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
+      });
+    </script>
+  </body>
+</html>

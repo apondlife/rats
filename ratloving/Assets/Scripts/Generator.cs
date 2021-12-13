@@ -9,7 +9,7 @@ using UnityEditor.SceneManagement;
 [ExecuteInEditMode]
 public class Generator : MonoBehaviour
 {
-    public Bounds worldBounds;
+    public Bounds localBounds;
     public GameObject[] prefabs;
 
     public bool randomizeTexture;
@@ -46,6 +46,8 @@ public class Generator : MonoBehaviour
 
         container = new GameObject(containerName);
         container.transform.SetParent(this.transform);
+        container.transform.localPosition = Vector3.zero;
+        container.transform.rotation = Quaternion.identity;
 
         for (int i = 0; i < nObjects; i++) {
             GameObject prefab = prefabs[Random.Range(0, prefabs.Length)];
@@ -79,7 +81,7 @@ public class Generator : MonoBehaviour
 
             float scaleFactor = Random.Range(minScale, maxScale);
             obj.transform.localScale *= (scaleFactor/_maxDimension); 
-            obj.transform.position = Utils.RandomPointInBounds(worldBounds);// - totalBounds.center;
+            obj.transform.localPosition = Utils.RandomPointInBounds(localBounds);// - totalBounds.center;
         }
     }
 
